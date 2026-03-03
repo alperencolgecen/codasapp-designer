@@ -40,3 +40,25 @@ dist-ssr
 
 # TypeScript
 *.tsbuildinfo
+
+# ── Secrets & credentials ─────────────────────────────────────
+# Environment variable files (never commit)
+.env
+.env.*
+# Local configuration files
+config.local.js
+config.local.json
+# API keys, tokens, and other secrets
+*.key
+*.pem
+*.crt
+*.secret
+# Private data directories
+private/
+secrets/
+
+# ── Dependency lock files ─────────────────────────────────────
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+npm-shrinkwrap.json
