@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Codasapp
 
 Modern web application builder with drag-and-drop interface.
@@ -51,3 +52,7 @@ npm run build
 ## License
 
 MIT
+=======
+# codasapp-designer
+A practical UI builder React project that fully implements features such as fast drag-and-drop, real-time style creation, and instant HTML export.
+>>>>>>> 08a1b20cb51482bf2961c0ae2b1d6958911579be
