@@ -1,0 +1,80 @@
+.canvas-workspace {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.canvas-paper {
+  width: 100%;
+  max-width: 1400px;
+  min-height: 1000px;
+  position: relative;
+  background-color: #ffffff; /* Explicit white for paper */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin-bottom: 100px; /* Space at bottom */
+}
+
+.canvas-paper--droppable {
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+}
+
+.canvas-content {
+  min-height: 100%;
+  padding: var(--spacing-lg);
+  position: relative;
+}
+
+/* User Component Wrapper in Editor */
+.component-wrapper {
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: box-shadow 0.1s ease;
+}
+
+.component-wrapper:hover {
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+}
+
+.component-wrapper--selected {
+  box-shadow: 0 0 0 var(--selection-border-width) var(--color-primary) !important;
+  z-index: var(--z-index-base) + 1;
+}
+
+.component-wrapper--dragging {
+  opacity: 0.5;
+  z-index: var(--z-index-drag-preview);
+}
+
+/* Empty State */
+.canvas-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 400px;
+  color: var(--color-text-muted);
+  gap: var(--spacing-md);
+}
+
+.canvas-empty__icon {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.canvas-empty__title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.canvas-empty__text {
+  font-size: 14px;
+}

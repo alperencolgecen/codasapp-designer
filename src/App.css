@@ -1,0 +1,400 @@
+/* ================================================
+   CODASAPP BUILDER - CSS STYLING GUIDE
+   ================================================
+   Bu dosya Tailwind sınıflarının vanilla CSS karşılıklarını içerir.
+   Her bölüm hangi UI elemanını temsil ettiği ile açıklanmıştır.
+*/
+
+/* ================================================
+   GENEL AYARLAR VE FONT
+   ================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+}
+
+/* Seçili metinlerin arka plan rengi */
+::selection {
+  background-color: rgba(168, 85, 247, 0.3); /* purple-500/30 */
+}
+
+/* Custom Scrollbar - Sidebar için */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ================================================
+   1. ANA UYGULAMA CONTAINER (appContainer)
+   ================================================
+   Tüm uygulamayı saran en dış kutu.
+   Siyah arka plan, tam ekran yükseklik, dikey sıralama.
+*/
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  background-color: #000000;
+  color: #fafafa; /* zinc-100 */
+  overflow: hidden;
+}
+
+
+/* ================================================
+   2. TOOLBAR (toolbarWrapper)
+   ================================================
+   Üst kısımdaki menü çubuğu. Bulanık cam efekti var.
+   Gölge ve ince beyaz border ile ayrılıyor.
+*/
+.toolbar-wrapper {
+  z-index: 30;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(15, 15, 17, 0.8); /* #0f0f11 ile %80 opacity */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ================================================
+   3. MAIN CONTENT (mainContent)
+   ================================================
+   Sidebar + Canvas + Inspector'ı yan yana tutan container.
+   Toolbar'ın altında, Status Bar'ın üstünde.
+*/
+.main-content {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/* ================================================
+   4. SIDEBAR (Sol Panel - Component Library)
+   ================================================
+   Sol taraftaki komponent kütüphanesi paneli.
+   300px genişliğinde, koyu arka plan.
+*/
+
+/* Sidebar ana container */
+.sidebar-container {
+  width: 300px;
+  background-color: #0f0f11;
+  border-right: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  z-index: 20;
+  position: relative;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Sidebar header (başlık kısmı) */
+.sidebar-header {
+  padding: 24px; /* p-6 = 1.5rem = 24px */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.01));
+}
+
+/* "COMPONENT LIBRARY" yazısı */
+.sidebar-header-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: #c084fc; /* purple-400 */
+  text-transform: uppercase;
+  letter-spacing: 0.2em; /* tracking-[0.2em] */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Animasyonlu icon (Layers) */
+.sidebar-header-title .animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* PRO badge */
+.sidebar-pro-badge {
+  font-size: 10px;
+  background-color: rgba(168, 85, 247, 0.1); /* purple-500/10 */
+  color: #c084fc; /* purple-400 */
+  padding: 4px 10px; /* px-2.5 py-1 */
+  border-radius: 8px;
+  border: 1px solid rgba(168, 85, 247, 0.2); /* purple-500/20 */
+  font-weight: 700;
+}
+
+/* Sidebar içerik wrapper (kaydırılabilir alan) */
+.sidebar-content-wrapper {
+  padding: 24px; /* p-6 */
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Component grid (2 sütunlu) */
+.sidebar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px; /* gap-3 */
+}
+
+/* Promo Box (premium widget kutusu) */
+.sidebar-promo-box {
+  padding: 20px; /* p-5 */
+  border-radius: 16px; /* rounded-2xl */
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.02);
+  text-align: center;
+  transition: border-color 500ms;
+}
+
+.sidebar-promo-box:hover {
+  border-color: rgba(168, 85, 247, 0.5); /* purple-500/50 */
+}
+
+/* Promo icon */
+.sidebar-promo-icon {
+  margin: 0 auto 12px auto;
+  color: #475569; /* slate-600 */
+  transition: color 300ms;
+}
+
+.sidebar-promo-box:hover .sidebar-promo-icon {
+  color: #c084fc; /* purple-400 */
+}
+
+/* Promo title */
+.sidebar-promo-title {
+  font-size: 13px;
+  color: #94a3b8; /* slate-400 */
+  font-weight: 500;
+}
+
+/* Promo text */
+.sidebar-promo-text {
+  font-size: 11px;
+  color: #475569; /* slate-600 */
+  margin-top: 4px;
+}
+
+
+/* ================================================
+   5. CANVAS AREA (Ortadaki çalışma alanı)
+   ================================================
+   Kullanıcının komponent sürükleyip bıraktığı ana alan.
+   Nokta grid (dot pattern) arka plan var.
+*/
+
+/* Canvas wrapper */
+.canvas-wrapper {
+  flex: 1;
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  background-color: #161618;
+}
+
+/* Dot Grid (nokta deseni) */
+.canvas-dot-grid {
+  position: absolute;
+  inset: 0; /* top, right, bottom, left: 0 */
+  opacity: 0.07;
+  pointer-events: none;
+  background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px);
+  background-size: 32px 32px;
+}
+
+/* Scroll area (padding'li kaydırılabilir alan) */
+.canvas-scroll-area {
+  flex: 1;
+  padding: 40px; /* p-10 */
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+
+/* ================================================
+   6. INSPECTOR PANEL (Sağ Panel)
+   ================================================
+   Sağ taraftaki özellik düzenleme paneli.
+   320px genişliğinde, sol gölge ile ayrılıyor.
+*/
+.inspector-wrapper {
+  width: 320px;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: #0f0f11;
+  z-index: 20;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ================================================
+   7. STATUS BAR (Alt çubuk)
+   ================================================
+   En alttaki mor renkli durum çubuğu.
+   "Status: Ready" ve "Powered by AI Design" bilgileri.
+*/
+.status-bar {
+  height: 24px; /* h-6 */
+  background-color: #9333ea; /* purple-600 */
+  display: flex;
+  align-items: center;
+  padding: 0 16px; /* px-4 */
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.025em; 
+}
+
+.status-bar-left {
+  display: flex;
+  gap: 16px;
+}
+
+.status-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+/* YARDIMCI UTILITY CLASSES*/
+
+/* Flex utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-1 { flex: 1; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 4px; }
+.gap-2 { gap: 8px; }
+.gap-4 { gap: 16px; }
+
+/* Spacing utilities */
+.p-4 { padding: 16px; }
+.p-5 { padding: 20px; }
+.p-6 { padding: 24px; }
+.px-4 { padding-left: 16px; padding-right: 16px; }
+.mt-1 { margin-top: 4px; }
+.mt-8 { margin-top: 32px; }
+.mb-3 { margin-bottom: 12px; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+/* Text utilities */
+.text-center { text-align: center; }
+.uppercase { text-transform: uppercase; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+
+/* Position utilities */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+
+/* Overflow utilities */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-y-auto { overflow-y: auto; }
+
+/* Pointer events */
+.pointer-events-none { pointer-events: none; }
+
+/* Width utilities */
+.w-full { width: 100%; }
+
+
+/* ================================================
+   RESPONSIVE TASARIM (İsteğe bağlı)
+   ================================================ */
+@media (max-width: 1024px) {
+  .sidebar-container {
+    width: 240px;
+  }
+  
+  .inspector-wrapper {
+    width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    flex-direction: column;
+  }
+  
+  .sidebar-container,
+  .inspector-wrapper {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+}
+
+
+/* ================================================
+   NOTLAR
+   ================================================
+   
+   RENK PALETİ:
+   - Ana siyah: #000000
+   - Koyu panel: #0f0f11
+   - Canvas arka plan: #161618
+   - Mor vurgu: #9333ea (purple-600), #c084fc (purple-400)
+   - Beyaz border: rgba(255, 255, 255, 0.05)
+   - Slate gri: #475569, #94a3b8
+   - Zinc açık: #fafafa
+   
+   BÖLÜM YAPISI:
+   1. appContainer → Tüm uygulamayı saran container
+   2. toolbarWrapper → Üst menü çubuğu
+   3. mainContent → Sidebar + Canvas + Inspector wrapper
+   4. sidebar-* → Sol panel ve alt elemanları
+   5. canvas-* → Ortadaki çalışma alanı
+   6. inspector-wrapper → Sağ panel
+   7. status-bar → Alt durum çubuğu
+   
+   ÖZEL EFEKTLER:
+   - backdrop-filter: blur() → Cam efekti (Safari için -webkit öneki)
+   - box-shadow → Derinlik ve katman ayrımı
+   - gradients → İnce renk geçişleri
+   - transitions → Hover animasyonları
+   
+================================================ */

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>codasapp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- React Context and Logic Root -->
+    <div id="root"></div>
+
+    <div class="app-container">
+      <!-- Toolbar Omurga -->
+      <header id="main-toolbar">
+        <div class="toolbar__left">
+          <div id="logo-portal"></div>
+          <div id="menu-portal" class="toolbar__menu"></div>
+        </div>
+        <div class="toolbar__center">
+          <div id="project-title-portal" class="toolbar__project-title"></div>
+        </div>
+        <div class="toolbar__right">
+          <div id="history-portal" class="toolbar__history"></div>
+          <div id="actions-portal" style="display: flex; gap: var(--spacing-md); align-items: center;"></div>
+        </div>
+      </header>
+
+      <main id="main-content">
+        <!-- Sidebar Omurga -->
+        <aside id="sidebar-left">
+          <div id="sidebar-tabs-portal" class="sidebar-left__tabs"></div>
+          <div id="sidebar-panel-portal" class="sidebar-left__panel"></div>
+        </aside>
+
+        <section id="canvas-area">
+          <div class="canvas-viewport w-full h-full">
+            <div id="canvas-root" class="w-full h-full"></div>
+          </div>
+        </section>
+
+        <!-- Inspector Omurga -->
+        <aside id="inspector-panel">
+          <div id="inspector-header-portal" class="inspector-panel__header"></div>
+          <div id="inspector-tabs-portal" class="inspector-panel__tabs"></div>
+          <div id="inspector-content-portal" class="inspector-panel__content"></div>
+        </aside>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,106 @@
+.toolbar {
+  height: 56px;
+  background-color: var(--color-bg-sidebar);
+  border-bottom: var(--border-width) solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--spacing-md);
+  z-index: var(--z-index-toolbar);
+}
+
+.toolbar__left, .toolbar__right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.toolbar__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 700;
+  color: var(--color-text-main);
+  font-size: 16px;
+}
+
+.toolbar__logo-icon {
+  background-color: var(--color-primary);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.toolbar__menu {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-left: var(--spacing-lg);
+}
+
+.toolbar__menu-item {
+  font-size: 13px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.toolbar__menu-item:hover {
+  color: var(--color-text-main);
+}
+
+.toolbar__center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar__project-title {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 14px;
+  color: var(--color-text-main);
+  background-color: var(--color-surface);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius);
+  border: var(--border-width) solid var(--color-border);
+}
+
+.toolbar__history {
+  display: flex;
+  gap: var(--spacing-xs);
+}
+
+.toolbar__btn {
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius);
+  color: var(--color-text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  font-size: 14px;
+}
+
+.toolbar__btn:hover:not(:disabled) {
+  background-color: var(--color-surface);
+  color: var(--color-text-main);
+}
+
+.toolbar__btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.toolbar__btn--primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.toolbar__btn--secondary {
+  border: var(--border-width) solid var(--color-border);
+}
