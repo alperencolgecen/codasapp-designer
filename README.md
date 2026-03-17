@@ -1,6 +1,4 @@
-# <div align="center">
-  <img src="https://raw.githubusercontent.com/alperencolgecen/codasapp/main/assets/logo.svg" alt="Codasapp Logo" width="120"/>
-</div>
+
 
 <h1 align="center">Codasapp</h1>
 
