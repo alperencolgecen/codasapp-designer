@@ -117,9 +117,7 @@ Permissions-Policy: geolocation=(), microphone=(), camera=()
 
 Our security team reviews all reports and coordinates responses:
 
-- **Security Lead**: security@codasapp.com
-- **Development Team**: dev@codasapp.com
-- **Community Manager**: community@codasapp.com
+- **Community Manager**: alperencolgecen@gmail.com
 
 ## Bounty Program
 

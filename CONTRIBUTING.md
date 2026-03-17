@@ -317,7 +317,7 @@ If you need help:
 2. **Search existing issues**
 3. **Ask in GitHub Discussions**
 4. **Join our Discord community**
-5. **Contact maintainers** at support@codasapp.com
+5. **Contact maintainers** at alperencolgecen@gmail.com
 
 ---
 
