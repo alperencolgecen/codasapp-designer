@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📖 Documentation
+    url: https://github.com/alperencolgecen/codasapp#readme
+    about: Check our documentation for guides and API reference
+  - name: 💬 GitHub Discussions
+    url: https://github.com/alperencolgecen/codasapp/discussions
+    about: Ask questions and discuss ideas with the community
+  - name: 🐛 Report a Bug
+    url: https://github.com/alperencolgecen/codasapp/issues/new?assignees=&labels=bug&template=bug_report.md
+    about: Create a bug report to help us improve
+  - name: ✨ Request a Feature
+    url: https://github.com/alperencolgecen/codasapp/issues/new?assignees=&labels=enhancement&template=feature_request.md
+    about: Suggest an idea for this project
+  - name: ❓ Ask a Question
+    url: https://github.com/alperencolgecen/codasapp/issues/new?assignees=&labels=question&template=question.md
+    about: Ask a question about the project
