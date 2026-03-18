@@ -526,7 +526,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Tailwind CSS](https://tailwindcss.com/) - CSS framework
 - [DnD Kit](https://dndkit.com/) - Drag and drop library
 - [Lucide React](https://lucide.dev/) - Icon library
-
+``
 ---
 
 <div align="center">
