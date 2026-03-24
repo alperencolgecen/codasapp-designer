@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codasapp - Modern Web Application Builder</title>
+    <meta name="description" content="Powerful, modern web application builder with drag-and-drop interface. Built with React, TypeScript, and Vite.">
+    <meta name="keywords" content="web builder, drag and drop, react, typescript, vite, ui builder">
+    <meta name="author" content="Alperen Çölgeçen">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alperencolgecen.github.io/codasapp/">
+    <meta property="og:title" content="Codasapp - Modern Web Application Builder">
+    <meta property="og:description" content="Powerful, modern web application builder with drag-and-drop interface">
+    <meta property="og:image" content="https://repository-images.githubusercontent.com/alperencolgecen/codasapp/main/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://alperencolgecen.github.io/codasapp/">
+    <meta property="twitter:title" content="Codasapp - Modern Web Application Builder">
+    <meta property="twitter:description" content="Powerful, modern web application builder with drag-and-drop interface">
+    <meta property="twitter:image" content="https://repository-images.githubusercontent.com/alperencolgecen/codasapp/main/assets/twitter-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+    
+    <!-- Preconnect to improve performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f1115;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+        
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-size: 18px;
+            color: #7c3aed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #7c3aed 0%, #38bdf8 100%);
+            color: white;
+            border-radius: 16px;
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .feature-card {
+            background: #161920;
+            border: 1px solid #2d323e;
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #f3f4f6;
+        }
+        
+        .feature-description {
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background: #161920;
+            border-radius: 16px;
+            border: 1px solid #2d323e;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: #1f2937;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #374151;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #7c3aed;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="loading">
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 20px;">🚀</div>
+                <div>Loading Codasapp...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulate loading and show content
+        setTimeout(() => {
+            document.getElementById('app').innerHTML = `
+                <div class="container">
+                    <!-- Hero Section -->
+                    <div class="hero">
+                        <h1>Codasapp</h1>
+                        <p>Modern web application builder with drag-and-drop interface. Built with React, TypeScript, and Vite for the ultimate development experience.</p>
+                        <a href="https://github.com/alperencolgecen/codasapp" class="cta-button">Get Started</a>
+                    </div>
+
+                    <!-- Stats Section -->
+                    <div class="stats">
+                        <div class="stat-card">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">TypeScript</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">0</div>
+                            <div class="stat-label">Config Needed</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">Possibilities</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number">⚡</div>
+                            <div class="stat-label">Lightning Fast</div>
+                        </div>
+                    </div>
+
+                    <!-- Features Section -->
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <div class="feature-title">Visual Builder</div>
+                            <div class="feature-description">Intuitive drag-and-drop interface with pixel-perfect positioning and real-time preview.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <div class="feature-title">Lightning Fast</div>
+                            <div class="feature-description">Built with Vite for instant hot module replacement and blazing builds.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎯</div>
+                            <div class="feature-title">Type Safe</div>
+                            <div class="feature-description">Full TypeScript support with comprehensive type definitions and IntelliSense.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <div class="feature-title">Responsive</div>
+                            <div class="feature-description">Mobile-first approach with automatic breakpoint management.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔧</div>
+                            <div class="feature-title">Extensible</div>
+                            <div class="feature-description">Plugin system for custom components and unlimited possibilities.</div>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📤</div>
+                            <div class="feature-title">Export Ready</div>
+                            <div class="feature-description">Generate clean HTML files or deploy directly to hosting platforms.</div>
+                        </div>
+                    </div>
+
+                    <!-- CTA Section -->
+                    <div class="cta-section">
+                        <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: #f3f4f6;">Ready to Build?</h2>
+                        <p style="font-size: 1.2rem; color: #9ca3af; margin-bottom: 30px;">Join thousands of developers building amazing web applications with Codasapp.</p>
+                        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                            <a href="https://github.com/alperencolgecen/codasapp" class="cta-button">View on GitHub</a>
+                            <a href="https://www.npmjs.com/package/codasapp" class="cta-button" style="background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%);">Install via NPM</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }, 1500);
+    </script>
+</body>
+</html>
