@@ -206,6 +206,12 @@
     </div>
 
     <script>
+        // Open the actual Codasapp builder
+        function openBuilder() {
+            // Redirect to the development server
+            window.location.href = 'http://localhost:3000';
+        }
+        
         // Simulate loading and show content
         setTimeout(() => {
             document.getElementById('app').innerHTML = `
@@ -214,7 +220,7 @@
                     <div class="hero">
                         <h1>Codasapp</h1>
                         <p>Modern web application builder with drag-and-drop interface. Built with React, TypeScript, and Vite for the ultimate development experience.</p>
-                        <a href="https://github.com/alperencolgecen/codasapp" class="cta-button">Get Started</a>
+                        <a href="#" onclick="openBuilder()" class="cta-button">Get Started</a>
                     </div>
 
                     <!-- Stats Section -->

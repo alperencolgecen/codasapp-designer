@@ -33,6 +33,10 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="text" label="Text" />
                                 <DraggableSidebarItem type="button" label="Button" />
                                 <DraggableSidebarItem type="image" label="Image" />
+                                <DraggableSidebarItem type="input" label="Input" />
+                                <DraggableSidebarItem type="card" label="Card" />
+                                <DraggableSidebarItem type="icon" label="Icon" />
+                                <DraggableSidebarItem type="divider" label="Divider" />
                             </div>
                         </div>
 

@@ -62,6 +62,73 @@ export const useComponentLogic = ({
                 return <button className={className} style={style}>{props.text || 'Button'}</button>;
             case 'image':
                 return <img src={props.src || 'https://via.placeholder.com/150'} alt={props.alt || 'img'} className={className} style={style} />;
+            case 'input':
+                return <input 
+                    type={props.type || 'text'} 
+                    placeholder={props.placeholder || 'Enter text...'}
+                    value={props.value || ''}
+                    name={props.name}
+                    className={className} 
+                    style={style} 
+                />;
+            case 'card':
+                return (
+                    <div className={className} style={{
+                        border: '1px solid #e5e7eb',
+                        borderRadius: '8px',
+                        padding: '16px',
+                        backgroundColor: '#ffffff',
+                        boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                        ...style
+                    }}>
+                        {props.title && (
+                            <h3 style={{ margin: '0 0 8px 0', fontSize: '18px', fontWeight: '600' }}>
+                                {props.title}
+                            </h3>
+                        )}
+                        {props.subtitle && (
+                            <p style={{ margin: '0 0 12px 0', color: '#6b7280', fontSize: '14px' }}>
+                                {props.subtitle}
+                            </p>
+                        )}
+                        {component.children.map(child => (
+                            <ComponentRenderer
+                                key={child.id}
+                                component={child}
+                                selectedId={selectedId}
+                                selectComponent={selectComponent}
+                            />
+                        ))}
+                    </div>
+                );
+            case 'icon':
+                const iconSize = props.size === 'small' ? '16px' : 
+                                props.size === 'medium' ? '24px' : 
+                                props.size === 'large' ? '32px' : 
+                                props.size === 'xlarge' ? '48px' : '24px';
+                return (
+                    <span 
+                        className={className} 
+                        style={{ fontSize: iconSize, display: 'inline-flex', alignItems: 'center', ...style }}
+                    >
+                        {props.icon || '⭐'}
+                    </span>
+                );
+            case 'divider':
+                const isHorizontal = props.orientation !== 'vertical';
+                const thickness = props.thickness || '1px';
+                return (
+                    <div 
+                        className={className} 
+                        style={{
+                            width: isHorizontal ? '100%' : thickness,
+                            height: isHorizontal ? thickness : '100%',
+                            backgroundColor: '#e5e7eb',
+                            margin: isHorizontal ? '8px 0' : '0 8px',
+                            ...style
+                        }}
+                    />
+                );
             default:
                 return <div className={className}>Unknown</div>;
         }

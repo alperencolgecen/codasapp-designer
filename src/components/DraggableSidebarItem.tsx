@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -19,6 +19,10 @@ const getIcon = (type: ComponentType) => {
         case 'image': return <Image size={iconSize} strokeWidth={stroke} />;
         case 'row': return <Columns size={iconSize} strokeWidth={stroke} />;
         case 'column': return <LayoutGrid size={iconSize} strokeWidth={stroke} />;
+        case 'input': return <FileInput size={iconSize} strokeWidth={stroke} />;
+        case 'card': return <CreditCard size={iconSize} strokeWidth={stroke} />;
+        case 'icon': return <Star size={iconSize} strokeWidth={stroke} />;
+        case 'divider': return <Minus size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

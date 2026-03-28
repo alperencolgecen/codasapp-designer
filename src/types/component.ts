@@ -1,4 +1,4 @@
-export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column';
+export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider';
 
 export type StyleState = 'base' | 'hover' | 'active' | 'focus';
 
@@ -20,6 +20,20 @@ export interface ComponentProps {
     alt?: string;
     href?: string;
     style?: ComponentStyle;
+    // Input props
+    placeholder?: string;
+    type?: string;
+    value?: string;
+    name?: string;
+    // Card props
+    title?: string;
+    subtitle?: string;
+    // Icon props
+    icon?: string;
+    size?: string;
+    // Divider props
+    orientation?: 'horizontal' | 'vertical';
+    thickness?: string;
     [key: string]: any;
 }
 
