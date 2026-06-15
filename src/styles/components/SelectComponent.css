@@ -1,0 +1,11 @@
+.canvas-cmp-select {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #1f2937;
+    background: #fff;
+    width: 100%;
+    font-family: inherit;
+    cursor: pointer;
+}

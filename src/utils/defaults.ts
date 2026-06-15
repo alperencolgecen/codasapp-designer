@@ -18,6 +18,11 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     precode: { width: 300, height: 80 },
     link: { width: 100, height: 28 },
     list: { width: 200, height: 100 },
+    textarea: { width: 250, height: 100 },
+    select: { width: 200, height: 40 },
+    checkbox: { width: 120, height: 30 },
+    radio: { width: 120, height: 30 },
+    label: { width: 100, height: 28 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>

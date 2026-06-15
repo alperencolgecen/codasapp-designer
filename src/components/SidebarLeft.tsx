@@ -60,6 +60,18 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="column" label="Column" />
                             </div>
                         </div>
+
+                        <div className="sidebar-left__section">
+                            <span className="sidebar-left__title">Form</span>
+                            <div className="sidebar-left__grid">
+                                <DraggableSidebarItem type="input" label="Input" />
+                                <DraggableSidebarItem type="textarea" label="Textarea" />
+                                <DraggableSidebarItem type="select" label="Select" />
+                                <DraggableSidebarItem type="checkbox" label="Checkbox" />
+                                <DraggableSidebarItem type="radio" label="Radio" />
+                                <DraggableSidebarItem type="label" label="Label" />
+                            </div>
+                        </div>
                     </div>
                 );
 

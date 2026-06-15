@@ -17,6 +17,11 @@ import { BlockquoteComponent } from './BlockquoteComponent';
 import { PreCodeComponent } from './PreCodeComponent';
 import { LinkComponent } from './LinkComponent';
 import { ListComponent } from './ListComponent';
+import { TextareaComponent } from './TextareaComponent';
+import { SelectComponent } from './SelectComponent';
+import { CheckboxComponent } from './CheckboxComponent';
+import { RadioComponent } from './RadioComponent';
+import { LabelComponent } from './LabelComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -36,4 +41,9 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     precode: PreCodeComponent,
     link: LinkComponent,
     list: ListComponent,
+    textarea: TextareaComponent,
+    select: SelectComponent,
+    checkbox: CheckboxComponent,
+    radio: RadioComponent,
+    label: LabelComponent,
 };

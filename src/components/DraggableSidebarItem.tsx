@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -30,6 +30,11 @@ const getIcon = (type: ComponentType) => {
         case 'precode': return <Code2 size={iconSize} strokeWidth={stroke} />;
         case 'link': return <Link2 size={iconSize} strokeWidth={stroke} />;
         case 'list': return <List size={iconSize} strokeWidth={stroke} />;
+        case 'textarea': return <TextCursorInput size={iconSize} strokeWidth={stroke} />;
+        case 'select': return <ChevronDown size={iconSize} strokeWidth={stroke} />;
+        case 'checkbox': return <CheckSquare size={iconSize} strokeWidth={stroke} />;
+        case 'radio': return <Circle size={iconSize} strokeWidth={stroke} />;
+        case 'label': return <Tag size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

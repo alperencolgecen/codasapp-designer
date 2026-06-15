@@ -1,4 +1,4 @@
-export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list';
+export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'label';
 
 export type StyleState = 'base' | 'hover' | 'active' | 'focus';
 
@@ -41,6 +41,13 @@ export interface ComponentProps {
     // List props
     items?: string[];
     ordered?: boolean;
+    // Select props
+    options?: string[];
+    // Textarea props
+    rows?: number;
+    // Checkbox / Radio props
+    label?: string;
+    checked?: boolean;
     [key: string]: any;
 }
 

@@ -98,6 +98,98 @@ export const InspectorPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* ── Textarea rows ── */}
+                    {selectedComponent.type === 'textarea' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Textarea</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Placeholder</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.placeholder || ''}
+                                    onChange={(e) => handlePropChange('placeholder', e.target.value)}
+                                />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Satır sayısı</label>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.rows ?? 4}
+                                    onChange={(e) => handlePropChange('rows', parseInt(e.target.value) || 4)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Select options ── */}
+                    {selectedComponent.type === 'select' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Select</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Placeholder</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.placeholder || ''}
+                                    onChange={(e) => handlePropChange('placeholder', e.target.value)}
+                                />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Seçenekler (her satır bir seçenek)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={4}
+                                    value={Array.isArray(selectedComponent.props.options) ? selectedComponent.props.options.join('\n') : ''}
+                                    onChange={(e) => handlePropChange('options', e.target.value.split('\n').filter((s: string) => s.trim()))}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Checkbox / Radio label ── */}
+                    {(selectedComponent.type === 'checkbox' || selectedComponent.type === 'radio') && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">{selectedComponent.type === 'checkbox' ? 'Checkbox' : 'Radio'}</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Etiket</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.label || ''}
+                                    onChange={(e) => handlePropChange('label', e.target.value)}
+                                />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Seçili</label>
+                                <input
+                                    type="checkbox"
+                                    className="inspector-panel__checkbox"
+                                    checked={!!selectedComponent.props.checked}
+                                    onChange={(e) => handlePropChange('checked', e.target.checked)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Label text ── */}
+                    {selectedComponent.type === 'label' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Label</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Metin</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.text || ''}
+                                    onChange={(e) => handlePropChange('text', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── Blockquote cite ── */}
                     {selectedComponent.type === 'blockquote' && (
                         <div className="inspector-panel__section">

@@ -58,6 +58,19 @@ const generateComponentHTML = (component: ComponentData): string => {
             const listItems = items.map((item: string) => `<li>${item}</li>`).join('\n');
             return `<${listTag} ${idAttr} ${classAttr} ${styleAttr}>\n${listItems}\n</${listTag}>`;
         }
+        case 'textarea':
+            return `<textarea ${idAttr} ${classAttr} ${styleAttr} placeholder="${props.placeholder || 'Enter text...'}" rows="${props.rows || 4}" name="${props.name || ''}">${props.value || ''}</textarea>`;
+        case 'select': {
+            const opts = Array.isArray(props.options) && props.options.length > 0 ? props.options : ['Option 1'];
+            const optHtml = opts.map((o: string) => `<option value="${o}">${o}</option>`).join('\n');
+            return `<select ${idAttr} ${classAttr} ${styleAttr} name="${props.name || ''}">\n${props.placeholder ? `<option value="" disabled>${props.placeholder}</option>\n` : ''}${optHtml}\n</select>`;
+        }
+        case 'checkbox':
+            return `<label ${idAttr} ${classAttr} ${styleAttr}><input type="checkbox" ${props.checked ? 'checked' : ''} name="${props.name || ''}" /> ${props.label || 'Checkbox'}</label>`;
+        case 'radio':
+            return `<label ${idAttr} ${classAttr} ${styleAttr}><input type="radio" name="${props.name || 'radio'}" ${props.checked ? 'checked' : ''} /> ${props.label || 'Radio'}</label>`;
+        case 'label':
+            return `<label ${idAttr} ${classAttr} ${styleAttr} ${props.htmlFor ? `for="${props.htmlFor}"` : ''}>${props.text || 'Label'}</label>`;
         case 'row':
             return `<div ${idAttr} class="flex flex-row ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
         case 'column':
