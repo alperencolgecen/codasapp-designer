@@ -28,13 +28,13 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
         dragRef.current = true;
         const paper = document.getElementById('canvas-paper');
         if (!paper) return;
-        dragStartY.current = e.clientY;
+        dragStartY.current = e.clientX;
         dragStartH.current = paper.offsetHeight;
 
         const onMove = (ev: MouseEvent) => {
             if (!dragRef.current) return;
             ev.preventDefault();
-            const diff = ev.clientY - dragStartY.current;
+            const diff = ev.clientX - dragStartY.current;
             setCanvasHeight(Math.max(300, dragStartH.current + diff));
         };
 
@@ -47,7 +47,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
 
         window.addEventListener('mousemove', onMove);
         window.addEventListener('mouseup', onUp);
-        document.body.style.cursor = 'row-resize';
+        document.body.style.cursor = 'ew-resize';
     }, []);
 
     if (!canvasRoot) return null;
@@ -92,17 +92,11 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                     </div>
                 )}
             </div>
-            <div className="canvas-paper-resize-handle" onMouseDown={handleDragStart}>
-                <ChevronDown size={18} />
-            </div>
             <div className="canvas-resize-bar">
-                <div className="canvas-resize-bar__left">
-                    <Minus size={16} />
-                    <span>Azalt</span>
-                </div>
-                <div className="canvas-resize-bar__right">
-                    <span>Artır</span>
-                    <Plus size={16} />
+                <div className="canvas-resize-bar__left" />
+                <div className="canvas-resize-bar__right" />
+                <div className="canvas-resize-handle" onMouseDown={handleDragStart}>
+                    <ChevronDown size={18} />
                 </div>
             </div>
             <div className="canvas-resize-spacer" />
