@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useDroppable } from '@dnd-kit/core';
 import type { ComponentData } from '../types/component';
-import { MousePointer2, X, Minus, Plus } from 'lucide-react';
+import { MousePointer2, X, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useBuilder } from '../context/BuilderContext';
 import { ComponentRenderer } from './ComponentRenderer';
@@ -18,6 +18,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const canvasRoot = document.getElementById('canvas-root');
 
     const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
+    const [dragDir, setDragDir] = useState<'left' | 'right'>('right');
     const resizingRef = useRef(false);
     const startXRef = useRef(0);
     const startHRef = useRef(0);
@@ -29,9 +30,11 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
         if (!paper) return;
         startXRef.current = e.clientX;
         startHRef.current = paper.offsetHeight;
+        setDragDir('right');
 
         const handleMouseMove = (ev: MouseEvent) => {
             if (!resizingRef.current) return;
+            setDragDir(ev.clientX >= startXRef.current ? 'right' : 'left');
             const diff = ev.clientX - startXRef.current;
             setCanvasHeight(Math.max(300, startHRef.current + diff));
         };
@@ -93,6 +96,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                 )}
             </div>
             <div className="canvas-resize-bar" onMouseDown={handleMouseDown}>
+                {dragDir === 'right' ? <ChevronDown size={20} className="canvas-resize-bar__icon" /> : <ChevronUp size={20} className="canvas-resize-bar__icon" />}
                 <div className="canvas-resize-bar__left">
                     <Minus size={16} />
                     <span>Azalt</span>
