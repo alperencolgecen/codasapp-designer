@@ -63,14 +63,9 @@
   border-radius: 0 0 8px 8px;
   overflow: hidden;
   user-select: none;
-  margin-top: 14px;
 }
 
 .canvas-paper-resize-handle {
-  position: absolute;
-  bottom: -14px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 48px;
   height: 28px;
   display: flex;
@@ -81,7 +76,7 @@
   background: #1a1a1a;
   border: 2px solid #3b82f6;
   border-radius: 8px;
-  z-index: 5;
+  flex-shrink: 0;
   transition: color 0.2s, background 0.2s;
 }
 

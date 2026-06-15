@@ -63,6 +63,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
 
         const onMove = (ev: MouseEvent) => {
             if (!dragRef.current) return;
+            ev.preventDefault();
             const diff = ev.clientY - dragStartY.current;
             const h = Math.max(300, dragStartH.current + diff);
             heightRef.current = h;
@@ -122,9 +123,9 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                         <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
                     </div>
                 )}
-                <div className="canvas-paper-resize-handle" onMouseDown={handleDragStart}>
-                    <ChevronDown size={18} />
-                </div>
+            </div>
+            <div className="canvas-paper-resize-handle" onMouseDown={handleDragStart}>
+                <ChevronDown size={18} />
             </div>
             <div className="canvas-resize-bar">
                 <div
