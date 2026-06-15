@@ -30,6 +30,12 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     iframe: { width: 400, height: 300 },
     audio: { width: 300, height: 60 },
     figure: { width: 300, height: 260 },
+    section: { width: 300, height: 200 },
+    article: { width: 300, height: 200 },
+    header: { width: 400, height: 60 },
+    footer: { width: 400, height: 60 },
+    aside: { width: 200, height: 200 },
+    details: { width: 300, height: 80 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>

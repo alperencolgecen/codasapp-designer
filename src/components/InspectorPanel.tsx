@@ -347,6 +347,21 @@ export const InspectorPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* ── Details summary + text ── */}
+                    {selectedComponent.type === 'details' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Details</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Özet (summary)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.summary || ''} onChange={(e) => handlePropChange('summary', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">İçerik</label>
+                                <textarea className="inspector-panel__textarea" rows={3} value={selectedComponent.props.text || ''} onChange={(e) => handlePropChange('text', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── Blockquote cite ── */}
                     {selectedComponent.type === 'blockquote' && (
                         <div className="inspector-panel__section">

@@ -29,6 +29,12 @@ import { VideoComponent } from './VideoComponent';
 import { IframeComponent } from './IframeComponent';
 import { AudioComponent } from './AudioComponent';
 import { FigureComponent } from './FigureComponent';
+import { SectionComponent } from './SectionComponent';
+import { ArticleComponent } from './ArticleComponent';
+import { HeaderComponent } from './HeaderComponent';
+import { FooterComponent } from './FooterComponent';
+import { AsideComponent } from './AsideComponent';
+import { DetailsComponent } from './DetailsComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -60,4 +66,10 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     iframe: IframeComponent,
     audio: AudioComponent,
     figure: FigureComponent,
+    section: SectionComponent,
+    article: ArticleComponent,
+    header: HeaderComponent,
+    footer: FooterComponent,
+    aside: AsideComponent,
+    details: DetailsComponent,
 };

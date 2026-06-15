@@ -108,6 +108,18 @@ const generateComponentHTML = (component: ComponentData): string => {
             return `<div ${idAttr} ${styleAttr} style="background:#f8fafc;border-radius:6px;padding:12px 16px;border:1px solid #e2e8f0;${inlineStyle}"><audio src="${props.src || ''}" ${props.controls !== false ? 'controls' : ''} style="display:block;width:100%;">Tarayıcınız audio etiketini desteklemiyor.</audio></div>`;
         case 'figure':
             return `<figure ${idAttr} ${classAttr} ${styleAttr} style="margin:0;padding:8px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:6px;text-align:center;${inlineStyle}"><img src="${props.src || 'https://via.placeholder.com/300x200'}" alt="${props.alt || 'Figure image'}" style="max-width:100%;height:auto;border-radius:4px;display:block;" /><figcaption style="margin-top:8px;font-size:13px;color:#6b7280;font-style:italic;">${props.caption || 'Figure caption'}</figcaption></figure>`;
+        case 'section':
+            return `<section ${idAttr} ${classAttr} ${styleAttr}>\n${childHTML}\n</section>`;
+        case 'article':
+            return `<article ${idAttr} ${classAttr} ${styleAttr}>\n${childHTML}\n</article>`;
+        case 'header':
+            return `<header ${idAttr} ${classAttr} ${styleAttr}>\n${childHTML}\n</header>`;
+        case 'footer':
+            return `<footer ${idAttr} ${classAttr} ${styleAttr}>\n${childHTML}\n</footer>`;
+        case 'aside':
+            return `<aside ${idAttr} ${classAttr} ${styleAttr}>\n${childHTML}\n</aside>`;
+        case 'details':
+            return `<details ${idAttr} ${classAttr} ${styleAttr}>\n<summary>${props.summary || 'Click to expand'}</summary>\n<div>${props.text || 'Hidden content'}</div>\n</details>`;
         case 'row':
             return `<div ${idAttr} class="flex flex-row ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
         case 'column':

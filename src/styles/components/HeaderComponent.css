@@ -1,0 +1,9 @@
+.canvas-cmp-header {
+    min-height: 48px;
+    min-width: 100%;
+    border: 1px dashed #fcd34d;
+    background: #fffbeb;
+    border-radius: 4px;
+    padding: 12px 16px;
+    color: #1f2937;
+}

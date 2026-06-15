@@ -91,6 +91,18 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="figure" label="Figure" />
                             </div>
                         </div>
+
+                        <div className="sidebar-left__section">
+                            <span className="sidebar-left__title">Kapsayıcı</span>
+                            <div className="sidebar-left__grid">
+                                <DraggableSidebarItem type="section" label="Section" />
+                                <DraggableSidebarItem type="article" label="Article" />
+                                <DraggableSidebarItem type="header" label="Header" />
+                                <DraggableSidebarItem type="footer" label="Footer" />
+                                <DraggableSidebarItem type="aside" label="Aside" />
+                                <DraggableSidebarItem type="details" label="Details" />
+                            </div>
+                        </div>
                     </div>
                 );
 
