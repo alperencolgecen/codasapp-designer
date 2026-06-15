@@ -1,8 +1,9 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { Undo2, Redo2, Download, Rocket, ChevronDown, Zap, Eye, ExternalLink } from 'lucide-react';
+import { Undo2, Redo2, Download, Rocket, ChevronDown, Eye, ExternalLink } from 'lucide-react';
 import { useBuilder } from '../context/BuilderContext';
 import { downloadProject, previewInBrowser } from '../utils/exporter';
+import logoUrl from '../../assets/CodasApp-Designer.jpg';
 import '../styles/Toolbar.css';
 
 export const Toolbar: React.FC = () => {
@@ -18,9 +19,11 @@ export const Toolbar: React.FC = () => {
         <>
             {logoRoot && createPortal(
                 <div className="toolbar__logo">
-                    <div className="toolbar__logo-icon">
-                        <Zap size={18} />
-                    </div>
+                    <img
+                        src={logoUrl}
+                        alt="CodasApp"
+                        className="toolbar__logo-img"
+                    />
                 </div>,
                 logoRoot
             )}
