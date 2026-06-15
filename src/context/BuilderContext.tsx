@@ -27,6 +27,8 @@ interface BuilderContextType {
     deselectAll: () => void;
     deleteSelectedComponents: () => void;
     moveComponent: (id: string, x: number, y: number) => void;
+    canvasHeight: number | null;
+    setCanvasHeight: (h: number | null) => void;
 }
 
 const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
@@ -40,6 +42,7 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
     const [activeStyleState, setActiveStyleState] = useState<StyleState>('base');
     const [isPreviewMode, setIsPreviewMode] = useState(false);
     const [activeTab, setActiveTab] = useState<TabType>('elements');
+    const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
 
     // History
     const [history, setHistory] = useState<ComponentData[][]>([]);
@@ -371,6 +374,8 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
             moveComponent,
             isPreviewMode,
             togglePreviewMode,
+            canvasHeight,
+            setCanvasHeight,
             undo,
             redo,
             canUndo: historyIndex > 0,

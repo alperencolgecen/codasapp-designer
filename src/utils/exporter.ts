@@ -162,8 +162,27 @@ const generateComponentHTML = (component: ComponentData): string => {
     }
 };
 
-export const generateFullHTML = (components: ComponentData[]) => {
+export const generateFullHTML = (components: ComponentData[], canvasHeight?: number | null) => {
     const bodyContent = components.map(generateComponentHTML).join('\n\n');
+
+    // Use explicit canvas height if provided, otherwise calculate from components
+    const minH = canvasHeight ?? (() => {
+        const calcHeight = (nodes: ComponentData[]): number => {
+            let maxH = 1000;
+            for (const n of nodes) {
+                const top = parseFloat(String(n.props.style?.top || 0));
+                const height = parseFloat(String(n.props.style?.height || 100));
+                const bottom = top + height + 40;
+                if (bottom > maxH) maxH = bottom;
+                if (n.children.length) {
+                    const childH = calcHeight(n.children);
+                    if (childH > maxH) maxH = childH;
+                }
+            }
+            return maxH;
+        };
+        return calcHeight(components);
+    })();
 
     return `<!DOCTYPE html>
 <html lang="tr">
@@ -180,6 +199,7 @@ export const generateFullHTML = (components: ComponentData[]) => {
             padding: 0;
             background-color: #ffffff;
             overflow-x: hidden;
+            min-height: ${minH}px;
         }
         * { box-sizing: border-box; }
     </style>
@@ -190,8 +210,8 @@ export const generateFullHTML = (components: ComponentData[]) => {
 </html>`;
 };
 
-export const downloadProject = (components: ComponentData[]) => {
-    const html = generateFullHTML(components);
+export const downloadProject = (components: ComponentData[], canvasHeight?: number | null) => {
+    const html = generateFullHTML(components, canvasHeight);
     const blob = new Blob([html], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
 
@@ -206,8 +226,8 @@ export const downloadProject = (components: ComponentData[]) => {
 
 let previewWindow: Window | null = null;
 
-export const previewInBrowser = (components: ComponentData[]) => {
-    const html = generateFullHTML(components);
+export const previewInBrowser = (components: ComponentData[], canvasHeight?: number | null) => {
+    const html = generateFullHTML(components, canvasHeight);
     const blob = new Blob([html], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
 

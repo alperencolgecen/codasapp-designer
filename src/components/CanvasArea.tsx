@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useDroppable } from '@dnd-kit/core';
 import type { ComponentData } from '../types/component';
@@ -9,7 +9,7 @@ import { ComponentRenderer } from './ComponentRenderer';
 import '../styles/CanvasArea.css';
 
 export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ components }) => {
-    const { isPreviewMode, togglePreviewMode, selectComponent } = useBuilder();
+    const { isPreviewMode, togglePreviewMode, selectComponent, canvasHeight, setCanvasHeight } = useBuilder();
     const { setNodeRef, isOver } = useDroppable({
         id: 'canvas-drop-zone',
     });
@@ -17,7 +17,6 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const { selectedId, selectComponent: canvasSelect, onCanvasClick } = useCanvas(components);
     const canvasRoot = document.getElementById('canvas-root');
 
-    const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
     const dragRef = useRef(false);
     const dragStartY = useRef(0);
     const dragStartH = useRef(0);

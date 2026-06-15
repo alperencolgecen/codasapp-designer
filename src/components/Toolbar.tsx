@@ -7,7 +7,7 @@ import logoUrl from '../../assets/CodasApp-Designer.jpg';
 import '../styles/Toolbar.css';
 
 export const Toolbar: React.FC = () => {
-    const { undo, redo, canUndo, canRedo, components } = useBuilder();
+    const { undo, redo, canUndo, canRedo, components, canvasHeight } = useBuilder();
 
     const logoRoot = document.getElementById('logo-portal');
     const menuRoot = document.getElementById('menu-portal');
@@ -34,7 +34,7 @@ export const Toolbar: React.FC = () => {
                     <div className="toolbar__menu-item">Düzenle</div>
                     <div
                         className="toolbar__menu-item"
-                        onClick={() => previewInBrowser(components)}
+                        onClick={() => previewInBrowser(components, canvasHeight)}
                         title="Tarayıcıda önizle"
                     >
                         <ExternalLink size={14} style={{ marginRight: 4 }} />
@@ -78,7 +78,7 @@ export const Toolbar: React.FC = () => {
             {actionsRoot && createPortal(
                 <>
                     <button
-                        onClick={() => previewInBrowser(components)}
+                        onClick={() => previewInBrowser(components, canvasHeight)}
                         className="toolbar__btn"
                         title="Tarayıcıda önizle"
                     >
@@ -86,7 +86,7 @@ export const Toolbar: React.FC = () => {
                     </button>
 
                     <button
-                        onClick={() => downloadProject(components)}
+                        onClick={() => downloadProject(components, canvasHeight)}
                         className="toolbar__btn toolbar__btn--secondary"
                     >
                         <Download size={16} />
