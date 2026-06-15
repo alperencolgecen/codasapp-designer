@@ -1,0 +1,9 @@
+.canvas-cmp-link {
+    color: #3b82f6;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 2px 0;
+}
+.canvas-cmp-link:hover {
+    color: #2563eb;
+}

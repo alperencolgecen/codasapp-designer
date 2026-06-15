@@ -1,4 +1,4 @@
-export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider';
+export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list';
 
 export type StyleState = 'base' | 'hover' | 'active' | 'focus';
 
@@ -34,6 +34,13 @@ export interface ComponentProps {
     // Divider props
     orientation?: 'horizontal' | 'vertical';
     thickness?: string;
+    // Heading props
+    level?: number;
+    // Blockquote props
+    cite?: string;
+    // List props
+    items?: string[];
+    ordered?: boolean;
     [key: string]: any;
 }
 

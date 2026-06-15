@@ -1,0 +1,12 @@
+.canvas-cmp-list {
+    margin: 0;
+    padding-left: 24px;
+    color: #1f2937;
+}
+.canvas-cmp-list__item {
+    padding: 2px 0;
+    line-height: 1.5;
+}
+.canvas-cmp-list--ordered {
+    list-style: decimal;
+}

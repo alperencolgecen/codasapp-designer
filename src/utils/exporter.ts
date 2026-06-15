@@ -36,6 +36,28 @@ const generateComponentHTML = (component: ComponentData): string => {
             return `<button ${idAttr} ${classAttr} ${styleAttr}>${text || 'Buton'}</button>`;
         case 'image':
             return `<img ${idAttr} ${classAttr} ${styleAttr} src="${props.src || 'https://via.placeholder.com/150'}" alt="Görsel" />`;
+        case 'heading': {
+            const level = Math.min(6, Math.max(1, props.level || 2));
+            return `<h${level} ${idAttr} ${classAttr} ${styleAttr}>${props.text || 'Heading'}</h${level}>`;
+        }
+        case 'paragraph':
+            return `<p ${idAttr} ${classAttr} ${styleAttr}>${props.text || 'Paragraph text goes here.'}</p>`;
+        case 'span':
+            return `<span ${idAttr} ${classAttr} ${styleAttr}>${props.text || 'Inline text'}</span>`;
+        case 'blockquote': {
+            const citeHtml = props.cite ? `<cite>${props.cite}</cite>` : '';
+            return `<blockquote ${idAttr} ${classAttr} ${styleAttr}><p>${props.text || 'Blockquote citation'}</p>${citeHtml}</blockquote>`;
+        }
+        case 'precode':
+            return `<pre ${idAttr} ${classAttr} ${styleAttr}><code>${props.text || 'code snippet'}</code></pre>`;
+        case 'link':
+            return `<a ${idAttr} ${classAttr} ${styleAttr} href="${props.href || '#'}">${props.text || 'Click here'}</a>`;
+        case 'list': {
+            const items = Array.isArray(props.items) && props.items.length > 0 ? props.items : ['Item 1', 'Item 2', 'Item 3'];
+            const listTag = props.ordered ? 'ol' : 'ul';
+            const listItems = items.map((item: string) => `<li>${item}</li>`).join('\n');
+            return `<${listTag} ${idAttr} ${classAttr} ${styleAttr}>\n${listItems}\n</${listTag}>`;
+        }
         case 'row':
             return `<div ${idAttr} class="flex flex-row ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
         case 'column':

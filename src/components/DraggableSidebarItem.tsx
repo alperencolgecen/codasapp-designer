@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -23,6 +23,13 @@ const getIcon = (type: ComponentType) => {
         case 'card': return <CreditCard size={iconSize} strokeWidth={stroke} />;
         case 'icon': return <Star size={iconSize} strokeWidth={stroke} />;
         case 'divider': return <Minus size={iconSize} strokeWidth={stroke} />;
+        case 'heading': return <Heading2 size={iconSize} strokeWidth={stroke} />;
+        case 'paragraph': return <Pilcrow size={iconSize} strokeWidth={stroke} />;
+        case 'span': return <Type size={iconSize} strokeWidth={stroke} />;
+        case 'blockquote': return <TextQuote size={iconSize} strokeWidth={stroke} />;
+        case 'precode': return <Code2 size={iconSize} strokeWidth={stroke} />;
+        case 'link': return <Link2 size={iconSize} strokeWidth={stroke} />;
+        case 'list': return <List size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

@@ -10,6 +10,13 @@ import { IconComponent } from './IconComponent';
 import { DividerComponent } from './DividerComponent';
 import { RowComponent } from './RowComponent';
 import { ColumnComponent } from './ColumnComponent';
+import { HeadingComponent } from './HeadingComponent';
+import { ParagraphComponent } from './ParagraphComponent';
+import { SpanComponent } from './SpanComponent';
+import { BlockquoteComponent } from './BlockquoteComponent';
+import { PreCodeComponent } from './PreCodeComponent';
+import { LinkComponent } from './LinkComponent';
+import { ListComponent } from './ListComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -22,4 +29,11 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     divider: DividerComponent,
     row: RowComponent,
     column: ColumnComponent,
+    heading: HeadingComponent,
+    paragraph: ParagraphComponent,
+    span: SpanComponent,
+    blockquote: BlockquoteComponent,
+    precode: PreCodeComponent,
+    link: LinkComponent,
+    list: ListComponent,
 };

@@ -11,6 +11,13 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     card: { width: 250, height: 180 },
     icon: { width: 40, height: 40 },
     divider: { width: 200, height: 20 },
+    heading: { width: 200, height: 40 },
+    paragraph: { width: 300, height: 60 },
+    span: { width: 120, height: 28 },
+    blockquote: { width: 300, height: 80 },
+    precode: { width: 300, height: 80 },
+    link: { width: 100, height: 28 },
+    list: { width: 200, height: 100 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>
