@@ -159,6 +159,9 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
             saveToHistory(newComponents);
             return newComponents;
         });
+
+        // Otomatik seç: eklenen component hemen inspector'da açılsın
+        selectComponent(newComponent.id);
     };
 
     // ── updateComponent (generic props update, unchanged) ───────────────────
