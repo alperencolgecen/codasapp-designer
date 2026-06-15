@@ -13,8 +13,16 @@
   background-color: #ffffff;
   color: #1f2937;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   margin-bottom: 100px;
+  resize: vertical;
+  overflow: auto;
+}
+
+.canvas-paper::-webkit-resizer {
+  background: linear-gradient(135deg, transparent 30%, #3b82f6 30%, #3b82f6 50%, transparent 50%);
+  background-size: 16px 16px;
+  border-bottom-right-radius: 4px;
 }
 
 .canvas-paper--droppable {
