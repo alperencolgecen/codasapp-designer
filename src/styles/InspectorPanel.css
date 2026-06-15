@@ -94,3 +94,33 @@
   background-color: var(--color-primary);
   color: white;
 }
+
+.inspector-panel__textarea {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-text-main);
+  font-size: 13px;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.inspector-panel__textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+.inspector-panel__checkbox {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.inspector-panel__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-sm);
+}

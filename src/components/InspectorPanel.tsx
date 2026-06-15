@@ -61,7 +61,11 @@ export const InspectorPanel: React.FC = () => {
 
             {contentRoot && createPortal(
                 <>
-                    {(selectedComponent.type === 'text' || selectedComponent.type === 'button') && (
+                    {/* ── Metin tabanlı componentler ── */}
+                    {(selectedComponent.type === 'text' || selectedComponent.type === 'button' || 
+                      selectedComponent.type === 'heading' || selectedComponent.type === 'paragraph' || 
+                      selectedComponent.type === 'span' || selectedComponent.type === 'blockquote' || 
+                      selectedComponent.type === 'precode' || selectedComponent.type === 'link') && (
                         <div className="inspector-panel__section">
                             <div className="inspector-panel__section-title">İçerik</div>
                             <div className="inspector-panel__field">
@@ -71,6 +75,81 @@ export const InspectorPanel: React.FC = () => {
                                     className="inspector-panel__input"
                                     value={selectedComponent.props.text || ''}
                                     onChange={(e) => handlePropChange('text', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Heading level ── */}
+                    {selectedComponent.type === 'heading' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Heading</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Seviye (h1-h6)</label>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    max={6}
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.level ?? 2}
+                                    onChange={(e) => handlePropChange('level', parseInt(e.target.value) || 2)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Blockquote cite ── */}
+                    {selectedComponent.type === 'blockquote' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Alıntı</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Kaynak (cite)</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.cite || ''}
+                                    onChange={(e) => handlePropChange('cite', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Link href ── */}
+                    {selectedComponent.type === 'link' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Link</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Hedef URL</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.href || ''}
+                                    onChange={(e) => handlePropChange('href', e.target.value)}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── List items ── */}
+                    {selectedComponent.type === 'list' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Liste</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Sıralı</label>
+                                <input
+                                    type="checkbox"
+                                    className="inspector-panel__checkbox"
+                                    checked={!!selectedComponent.props.ordered}
+                                    onChange={(e) => handlePropChange('ordered', e.target.checked)}
+                                />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Öğeler (her satır bir öğe)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={4}
+                                    value={Array.isArray(selectedComponent.props.items) ? selectedComponent.props.items.join('\n') : ''}
+                                    onChange={(e) => handlePropChange('items', e.target.value.split('\n').filter((s: string) => s.trim()))}
                                 />
                             </div>
                         </div>
