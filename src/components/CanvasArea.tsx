@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useDroppable } from '@dnd-kit/core';
 import type { ComponentData } from '../types/component';
-import { MousePointer2, X, ChevronDown } from 'lucide-react';
+import { MousePointer2, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useBuilder } from '../context/BuilderContext';
 import { ComponentRenderer } from './ComponentRenderer';
@@ -18,9 +18,11 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const canvasRoot = document.getElementById('canvas-root');
 
     const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
+    const [dragDir, setDragDir] = useState<'down' | 'up'>('down');
     const resizingRef = useRef(false);
     const startYRef = useRef(0);
     const startHRef = useRef(0);
+    const lastYRef = useRef(0);
 
     const handleMouseDown = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
@@ -29,11 +31,15 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
         if (!paper) return;
         startYRef.current = e.clientY;
         startHRef.current = paper.offsetHeight;
+        lastYRef.current = e.clientY;
+        setDragDir('down');
 
         const handleMouseMove = (ev: MouseEvent) => {
             if (!resizingRef.current) return;
+            setDragDir(ev.clientY >= lastYRef.current ? 'down' : 'up');
+            lastYRef.current = ev.clientY;
             const diff = ev.clientY - startYRef.current;
-            setCanvasHeight(Math.max(400, startHRef.current + diff));
+            setCanvasHeight(Math.max(300, startHRef.current + diff));
         };
 
         const handleMouseUp = () => {
@@ -93,7 +99,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                 )}
             </div>
             <div className="canvas-resize-handle" onMouseDown={handleMouseDown}>
-                <ChevronDown size={24} />
+                {dragDir === 'down' ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
             </div>
             <div className="canvas-resize-spacer" />
         </div>,
