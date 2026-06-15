@@ -1,4 +1,4 @@
-export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'label' | 'navbar' | 'breadcrumb' | 'pagination' | 'video' | 'iframe' | 'audio' | 'figure' | 'section' | 'article' | 'header' | 'footer' | 'aside' | 'details';
+export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'label' | 'navbar' | 'breadcrumb' | 'pagination' | 'video' | 'iframe' | 'audio' | 'figure' | 'section' | 'article' | 'header' | 'footer' | 'aside' | 'details' | 'tabs' | 'accordion' | 'modal' | 'tooltip' | 'table' | 'progress' | 'badge' | 'avatar' | 'alert';
 
 export type StyleState = 'base' | 'hover' | 'active' | 'focus';
 

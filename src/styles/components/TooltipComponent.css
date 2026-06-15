@@ -1,0 +1,40 @@
+.canvas-cmp-tooltip-wrapper {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+}
+.canvas-cmp-tooltip-target {
+    padding: 6px 12px;
+    border: 1px dashed #d1d5db;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #1f2937;
+}
+.canvas-cmp-tooltip {
+    position: absolute;
+    background: #1e293b;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+.canvas-cmp-tooltip-wrapper:hover .canvas-cmp-tooltip {
+    opacity: 1;
+}
+.canvas-cmp-tooltip-wrapper--top .canvas-cmp-tooltip {
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 6px;
+}
+.canvas-cmp-tooltip-wrapper--bottom .canvas-cmp-tooltip {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 6px;
+}

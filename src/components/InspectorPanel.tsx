@@ -362,6 +362,200 @@ export const InspectorPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* ── Tabs ── */}
+                    {selectedComponent.type === 'tabs' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Tabs</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Sekmeler (her satır: etiket,içerik)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={5}
+                                    value={Array.isArray(selectedComponent.props.tabs) ? selectedComponent.props.tabs.map((t: { label: string; content: string }) => `${t.label},${t.content}`).join('\n') : ''}
+                                    onChange={(e) => {
+                                        const tabs = e.target.value.split('\n').filter(Boolean).map((line: string) => {
+                                            const [label = 'Tab', content = 'Content'] = line.split(',');
+                                            return { label: label.trim(), content: content.trim() };
+                                        });
+                                        handlePropChange('tabs', tabs);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Accordion ── */}
+                    {selectedComponent.type === 'accordion' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Accordion</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Öğeler (her satır: başlık,içerik)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={5}
+                                    value={Array.isArray(selectedComponent.props.items) ? selectedComponent.props.items.map((i: { title: string; content: string }) => `${i.title},${i.content}`).join('\n') : ''}
+                                    onChange={(e) => {
+                                        const items = e.target.value.split('\n').filter(Boolean).map((line: string) => {
+                                            const [title = 'Section', content = 'Content'] = line.split(',');
+                                            return { title: title.trim(), content: content.trim() };
+                                        });
+                                        handlePropChange('items', items);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Modal ── */}
+                    {selectedComponent.type === 'modal' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Modal</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Buton Metni</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.buttonText || ''} onChange={(e) => handlePropChange('buttonText', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Başlık</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.title || ''} onChange={(e) => handlePropChange('title', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">İçerik</label>
+                                <textarea className="inspector-panel__textarea" rows={3} value={selectedComponent.props.text || ''} onChange={(e) => handlePropChange('text', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Tooltip ── */}
+                    {selectedComponent.type === 'tooltip' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Tooltip</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Tetikleyici Metin</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.trigger || ''} onChange={(e) => handlePropChange('trigger', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Tooltip Metni</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.text || ''} onChange={(e) => handlePropChange('text', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Konum</label>
+                                <select className="inspector-panel__select" value={selectedComponent.props.position || 'top'} onChange={(e) => handlePropChange('position', e.target.value)}>
+                                    <option value="top">Üst</option>
+                                    <option value="bottom">Alt</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Table ── */}
+                    {selectedComponent.type === 'table' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Table</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Sütun Başlıkları (virgülle ayır)</label>
+                                <input type="text" className="inspector-panel__input" value={Array.isArray(selectedComponent.props.headers) ? selectedComponent.props.headers.join(', ') : ''} onChange={(e) => handlePropChange('headers', e.target.value.split(',').map((s: string) => s.trim()))} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Satırlar (her satır: değer1,değer2,...)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={5}
+                                    value={Array.isArray(selectedComponent.props.rows) ? selectedComponent.props.rows.map((r: string[]) => r.join(',')).join('\n') : ''}
+                                    onChange={(e) => {
+                                        const rows = e.target.value.split('\n').filter(Boolean).map((line: string) => line.split(',').map((s: string) => s.trim()));
+                                        handlePropChange('rows', rows);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Progress ── */}
+                    {selectedComponent.type === 'progress' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Progress Bar</div>
+                            <div className="inspector-panel__grid">
+                                <div className="inspector-panel__field">
+                                    <label className="inspector-panel__label">Değer</label>
+                                    <input type="number" min={0} className="inspector-panel__input" value={selectedComponent.props.value ?? 60} onChange={(e) => handlePropChange('value', parseInt(e.target.value) || 0)} />
+                                </div>
+                                <div className="inspector-panel__field">
+                                    <label className="inspector-panel__label">Maksimum</label>
+                                    <input type="number" min={1} className="inspector-panel__input" value={selectedComponent.props.max ?? 100} onChange={(e) => handlePropChange('max', parseInt(e.target.value) || 100)} />
+                                </div>
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Etiket</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.label || ''} onChange={(e) => handlePropChange('label', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Badge ── */}
+                    {selectedComponent.type === 'badge' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Badge</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Metin</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.text || ''} onChange={(e) => handlePropChange('text', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Varyant</label>
+                                <select className="inspector-panel__select" value={selectedComponent.props.variant || 'default'} onChange={(e) => handlePropChange('variant', e.target.value)}>
+                                    <option value="default">Default</option>
+                                    <option value="primary">Primary</option>
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warning</option>
+                                    <option value="danger">Danger</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Avatar ── */}
+                    {selectedComponent.type === 'avatar' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Avatar</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Görsel (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">İsim (baş harfler)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.name || ''} onChange={(e) => handlePropChange('name', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Boyut</label>
+                                <select className="inspector-panel__select" value={selectedComponent.props.size || 'medium'} onChange={(e) => handlePropChange('size', e.target.value)}>
+                                    <option value="small">Small (32px)</option>
+                                    <option value="medium">Medium (40px)</option>
+                                    <option value="large">Large (56px)</option>
+                                    <option value="xlarge">XLarge (72px)</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Alert ── */}
+                    {selectedComponent.type === 'alert' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Alert</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Metin</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.text || ''} onChange={(e) => handlePropChange('text', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Varyant</label>
+                                <select className="inspector-panel__select" value={selectedComponent.props.variant || 'info'} onChange={(e) => handlePropChange('variant', e.target.value)}>
+                                    <option value="info">Info</option>
+                                    <option value="success">Success</option>
+                                    <option value="warning">Warning</option>
+                                    <option value="danger">Danger</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── Blockquote cite ── */}
                     {selectedComponent.type === 'blockquote' && (
                         <div className="inspector-panel__section">

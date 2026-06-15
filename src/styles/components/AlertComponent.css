@@ -1,0 +1,27 @@
+.canvas-cmp-alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    line-height: 1.5;
+    border: 1px solid;
+}
+.canvas-cmp-alert--info {
+    background: #eff6ff;
+    color: #1e40af;
+    border-color: #bfdbfe;
+}
+.canvas-cmp-alert--success {
+    background: #f0fdf4;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+.canvas-cmp-alert--warning {
+    background: #fffbeb;
+    color: #92400e;
+    border-color: #fde68a;
+}
+.canvas-cmp-alert--danger {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}

@@ -122,6 +122,39 @@ const generateComponentHTML = (component: ComponentData): string => {
             return `<details ${idAttr} ${classAttr} ${styleAttr}>\n<summary>${props.summary || 'Click to expand'}</summary>\n<div>${props.text || 'Hidden content'}</div>\n</details>`;
         case 'row':
             return `<div ${idAttr} class="flex flex-row ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
+        case 'tabs': {
+            const tabs = Array.isArray(props.tabs) ? props.tabs : [];
+            const headers = tabs.map((t: { label?: string }, i: number) =>
+                `<button class="tabs-btn${i === 0 ? ' tabs-btn--active' : ''}">${t.label || `Tab ${i+1}`}</button>`
+            ).join('\n');
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="border:1px solid #e2e8f0;border-radius:6px;overflow:hidden;${inlineStyle}">\n<div style="display:flex;border-bottom:1px solid #e2e8f0;background:#f8fafc;">\n${headers}\n</div>\n<div style="padding:16px;font-size:14px;min-height:60px;">${tabs[0]?.content || 'Content'}</div>\n</div>`;
+        }
+        case 'accordion': {
+            const accItems = Array.isArray(props.items) ? props.items : [];
+            const accHtml = accItems.map((item: { title?: string; content?: string }, i: number) =>
+                `<div style="border-bottom:1px solid #e2e8f0;">\n<button style="width:100%;display:flex;justify-content:space-between;padding:12px 16px;font-size:14px;font-weight:600;color:#1f2937;background:#f8fafc;border:none;cursor:pointer;">${item.title || `Section ${i+1}`}<span style="font-size:18px;">${i === 0 ? '−' : '+'}</span></button>\n${i === 0 ? `<div style="padding:12px 16px;font-size:14px;color:#4b5563;">${item.content || 'Content'}</div>` : ''}\n</div>`
+            ).join('\n');
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="border:1px solid #e2e8f0;border-radius:6px;overflow:hidden;${inlineStyle}">\n${accHtml}\n</div>`;
+        }
+        case 'modal':
+            return `<div ${idAttr} ${styleAttr} style="${inlineStyle}">\n<button style="padding:8px 16px;background:#3b82f6;color:#fff;border:none;border-radius:6px;font-size:14px;cursor:pointer;">${props.buttonText || 'Open Modal'}</button>\n</div>`;
+        case 'tooltip':
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="position:relative;display:inline-flex;cursor:pointer;${inlineStyle}">\n<span style="padding:6px 12px;border:1px dashed #d1d5db;border-radius:4px;font-size:14px;">${props.trigger || 'Hover me'}</span>\n<span style="position:absolute;bottom:100%;left:50%;transform:translateX(-50%);margin-bottom:6px;background:#1e293b;color:#fff;padding:6px 10px;border-radius:4px;font-size:12px;white-space:nowrap;">${props.text || 'Tooltip text'}</span>\n</div>`;
+        case 'table': {
+            const headers = Array.isArray(props.headers) ? props.headers : [];
+            const rows = Array.isArray(props.rows) ? props.rows : [];
+            const thHtml = headers.map((h: string) => `<th style="background:#f8fafc;font-weight:600;padding:10px 14px;border-bottom:2px solid #e2e8f0;text-align:left;color:#374151;">${h}</th>`).join('\n');
+            const rowHtml = rows.map((r: string[]) => `<tr>${r.map((c: string) => `<td style="padding:8px 14px;border-bottom:1px solid #f1f5f9;">${c}</td>`).join('')}</tr>`).join('\n');
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="overflow-x:auto;border:1px solid #e2e8f0;border-radius:6px;${inlineStyle}">\n<table style="width:100%;border-collapse:collapse;font-size:14px;color:#1f2937;">\n${headers.length ? `<thead><tr>\n${thHtml}\n</tr></thead>` : ''}\n<tbody>\n${rowHtml}\n</tbody>\n</table>\n</div>`;
+        }
+        case 'progress':
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="display:flex;align-items:center;gap:10px;padding:8px 0;${inlineStyle}">\n<div style="flex:1;height:10px;background:#e2e8f0;border-radius:5px;overflow:hidden;">\n<div style="height:100%;width:${Math.min(100, Math.max(0, (props.value||0)/(props.max||100)*100))}%;background:linear-gradient(90deg,#3b82f6,#2563eb);border-radius:5px;"></div>\n</div>\n<span style="font-size:13px;font-weight:600;color:#4b5563;min-width:40px;text-align:right;">${props.label || Math.round((props.value||0)/(props.max||100)*100)+'%'}</span>\n</div>`;
+        case 'badge':
+            return `<span ${idAttr} ${classAttr} ${styleAttr} style="display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:600;line-height:1.5;background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;${inlineStyle}">${props.text || 'Badge'}</span>`;
+        case 'avatar':
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;overflow:hidden;background:#e2e8f0;flex-shrink:0;${inlineStyle}">\n${props.src ? `<img src="${props.src}" alt="${props.name || 'Avatar'}" style="width:100%;height:100%;object-fit:cover;" />` : `<span style="font-weight:700;color:#64748b;font-size:16px;line-height:1;">${(props.name||'User').split(' ').map((w: string) => w[0]).join('').toUpperCase().slice(0,2) || '?'}</span>`}\n</div>`;
+        case 'alert':
+            return `<div ${idAttr} ${classAttr} ${styleAttr} style="padding:12px 16px;border-radius:6px;font-size:14px;line-height:1.5;border:1px solid;background:#eff6ff;color:#1e40af;border-color:#bfdbfe;${inlineStyle}">\n<span>${props.text || 'This is an alert message.'}</span>\n</div>`;
         case 'column':
             return `<div ${idAttr} class="flex flex-col ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
         default:

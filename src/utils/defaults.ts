@@ -36,6 +36,15 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     footer: { width: 400, height: 60 },
     aside: { width: 200, height: 200 },
     details: { width: 300, height: 80 },
+    tabs: { width: 350, height: 180 },
+    accordion: { width: 300, height: 120 },
+    modal: { width: 150, height: 40 },
+    tooltip: { width: 120, height: 36 },
+    table: { width: 400, height: 180 },
+    progress: { width: 250, height: 36 },
+    badge: { width: 80, height: 28 },
+    avatar: { width: 40, height: 40 },
+    alert: { width: 300, height: 48 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>

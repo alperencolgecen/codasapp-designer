@@ -1,0 +1,58 @@
+.canvas-cmp-modal-trigger {
+    padding: 8px 16px;
+    background: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.canvas-cmp-modal-trigger:hover {
+    background: #2563eb;
+}
+.canvas-cmp-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+.canvas-cmp-modal {
+    background: #fff;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.canvas-cmp-modal__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.canvas-cmp-modal__title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #1f2937;
+}
+.canvas-cmp-modal__close {
+    font-size: 22px;
+    color: #9ca3af;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0 4px;
+}
+.canvas-cmp-modal__close:hover {
+    color: #1f2937;
+}
+.canvas-cmp-modal__body {
+    padding: 18px;
+    font-size: 14px;
+    color: #4b5563;
+    min-height: 60px;
+}

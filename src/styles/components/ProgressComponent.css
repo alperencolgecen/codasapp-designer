@@ -1,0 +1,26 @@
+.canvas-cmp-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+}
+.canvas-cmp-progress__bg {
+    flex: 1;
+    height: 10px;
+    background: #e2e8f0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.canvas-cmp-progress__bar {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2563eb);
+    border-radius: 5px;
+    transition: width 0.3s;
+}
+.canvas-cmp-progress__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #4b5563;
+    min-width: 40px;
+    text-align: right;
+}

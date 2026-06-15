@@ -35,6 +35,15 @@ import { HeaderComponent } from './HeaderComponent';
 import { FooterComponent } from './FooterComponent';
 import { AsideComponent } from './AsideComponent';
 import { DetailsComponent } from './DetailsComponent';
+import { TabsComponent } from './TabsComponent';
+import { AccordionComponent } from './AccordionComponent';
+import { ModalComponent } from './ModalComponent';
+import { TooltipComponent } from './TooltipComponent';
+import { TableComponent } from './TableComponent';
+import { ProgressComponent } from './ProgressComponent';
+import { BadgeComponent } from './BadgeComponent';
+import { AvatarComponent } from './AvatarComponent';
+import { AlertComponent } from './AlertComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -72,4 +81,13 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     footer: FooterComponent,
     aside: AsideComponent,
     details: DetailsComponent,
+    tabs: TabsComponent,
+    accordion: AccordionComponent,
+    modal: ModalComponent,
+    tooltip: TooltipComponent,
+    table: TableComponent,
+    progress: ProgressComponent,
+    badge: BadgeComponent,
+    avatar: AvatarComponent,
+    alert: AlertComponent,
 };

@@ -1,0 +1,26 @@
+.canvas-cmp-table-wrapper {
+    overflow-x: auto;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+}
+.canvas-cmp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: #1f2937;
+}
+.canvas-cmp-table__th {
+    background: #f8fafc;
+    font-weight: 600;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 2px solid #e2e8f0;
+    color: #374151;
+}
+.canvas-cmp-table__td {
+    padding: 8px 14px;
+    border-bottom: 1px solid #f1f5f9;
+}
+.canvas-cmp-table tbody tr:hover {
+    background: #f8fafc;
+}

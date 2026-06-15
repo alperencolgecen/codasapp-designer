@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag, Menu, ChevronRight, ChevronsLeftRight, Video, Frame, Volume2, ImageDown, LayoutPanelTop, FileText, PanelTop, PanelBottom, PanelRight, ChevronDownSquare } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag, Menu, ChevronRight, ChevronsLeftRight, Video, Frame, Volume2, ImageDown, LayoutPanelTop, FileText, PanelTop, PanelBottom, PanelRight, ChevronDownSquare, GanttChartSquare, AlignJustify, Window, Speech, Table2, Gauge, CircleDot, CircleUser, TriangleAlert } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -48,6 +48,15 @@ const getIcon = (type: ComponentType) => {
         case 'footer': return <PanelBottom size={iconSize} strokeWidth={stroke} />;
         case 'aside': return <PanelRight size={iconSize} strokeWidth={stroke} />;
         case 'details': return <ChevronDownSquare size={iconSize} strokeWidth={stroke} />;
+        case 'tabs': return <GanttChartSquare size={iconSize} strokeWidth={stroke} />;
+        case 'accordion': return <AlignJustify size={iconSize} strokeWidth={stroke} />;
+        case 'modal': return <Window size={iconSize} strokeWidth={stroke} />;
+        case 'tooltip': return <Speech size={iconSize} strokeWidth={stroke} />;
+        case 'table': return <Table2 size={iconSize} strokeWidth={stroke} />;
+        case 'progress': return <Gauge size={iconSize} strokeWidth={stroke} />;
+        case 'badge': return <CircleDot size={iconSize} strokeWidth={stroke} />;
+        case 'avatar': return <CircleUser size={iconSize} strokeWidth={stroke} />;
+        case 'alert': return <TriangleAlert size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

@@ -75,6 +75,22 @@
   outline: none;
 }
 
+.inspector-panel__select {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background-color: var(--color-surface);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--border-radius);
+  color: var(--color-text-main);
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.inspector-panel__select:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
 .inspector-panel__tabs {
   display: flex;
   gap: var(--spacing-xs);
