@@ -2,7 +2,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useDroppable } from '@dnd-kit/core';
 import type { ComponentData } from '../types/component';
-import { MousePointer2, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { MousePointer2, X, Minus, Plus } from 'lucide-react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useBuilder } from '../context/BuilderContext';
 import { ComponentRenderer } from './ComponentRenderer';
@@ -18,27 +18,21 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const canvasRoot = document.getElementById('canvas-root');
 
     const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
-    const [dragDir, setDragDir] = useState<'down' | 'up'>('down');
     const resizingRef = useRef(false);
-    const startYRef = useRef(0);
+    const startXRef = useRef(0);
     const startHRef = useRef(0);
-    const lastYRef = useRef(0);
 
     const handleMouseDown = useCallback((e: React.MouseEvent) => {
         e.preventDefault();
         resizingRef.current = true;
         const paper = document.getElementById('canvas-paper');
         if (!paper) return;
-        startYRef.current = e.clientY;
+        startXRef.current = e.clientX;
         startHRef.current = paper.offsetHeight;
-        lastYRef.current = e.clientY;
-        setDragDir('down');
 
         const handleMouseMove = (ev: MouseEvent) => {
             if (!resizingRef.current) return;
-            setDragDir(ev.clientY >= lastYRef.current ? 'down' : 'up');
-            lastYRef.current = ev.clientY;
-            const diff = ev.clientY - startYRef.current;
+            const diff = ev.clientX - startXRef.current;
             setCanvasHeight(Math.max(300, startHRef.current + diff));
         };
 
@@ -52,7 +46,7 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
 
         window.addEventListener('mousemove', handleMouseMove);
         window.addEventListener('mouseup', handleMouseUp);
-        document.body.style.cursor = 'row-resize';
+        document.body.style.cursor = 'ew-resize';
         document.body.style.userSelect = 'none';
     }, []);
 
@@ -98,8 +92,15 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                     </div>
                 )}
             </div>
-            <div className="canvas-resize-handle" onMouseDown={handleMouseDown}>
-                {dragDir === 'down' ? <ChevronDown size={24} /> : <ChevronUp size={24} />}
+            <div className="canvas-resize-bar" onMouseDown={handleMouseDown}>
+                <div className="canvas-resize-bar__left">
+                    <Minus size={16} />
+                    <span>Azalt</span>
+                </div>
+                <div className="canvas-resize-bar__right">
+                    <span>Artır</span>
+                    <Plus size={16} />
+                </div>
             </div>
             <div className="canvas-resize-spacer" />
         </div>,
