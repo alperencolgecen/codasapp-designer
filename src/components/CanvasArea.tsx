@@ -52,50 +52,57 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
 
     if (!canvasRoot) return null;
 
-    return createPortal(
-        <div
-            className={`canvas-workspace ${isPreviewMode ? 'canvas--preview' : ''}`}
-            onClick={() => selectComponent(null)}
-        >
-            {isPreviewMode && (
-                <button
-                    onClick={togglePreviewMode}
-                    className="preview-close-btn"
-                    title="Close Preview"
+    return (
+        <>
+            {createPortal(
+                <div
+                    className={`canvas-workspace ${isPreviewMode ? 'canvas--preview' : ''}`}
+                    onClick={() => selectComponent(null)}
                 >
-                    <X size={20} />
-                </button>
-            )}
-            <div
-                id="canvas-paper"
-                ref={setNodeRef}
-                className={`canvas-paper ${isOver ? 'canvas-paper--droppable' : ''}`}
-                onClick={onCanvasClick}
-                style={canvasHeight ? { height: canvasHeight } : undefined}
-            >
-                {components.length > 0 ? (
-                    components.map(component => (
-                        <ComponentRenderer
-                            key={component.id}
-                            component={component}
-                            selectedId={selectedId}
-                            selectComponent={canvasSelect}
-                        />
-                    ))
-                ) : (
-                    <div className="canvas-empty">
-                        <div className="canvas-empty__icon">
-                            <MousePointer2 size={32} />
-                        </div>
-                        <h3 className="canvas-empty__title">Canvas Boş</h3>
-                        <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
+                    {isPreviewMode && (
+                        <button
+                            onClick={togglePreviewMode}
+                            className="preview-close-btn"
+                            title="Close Preview"
+                        >
+                            <X size={20} />
+                        </button>
+                    )}
+                    <div
+                        id="canvas-paper"
+                        ref={setNodeRef}
+                        className={`canvas-paper ${isOver ? 'canvas-paper--droppable' : ''}`}
+                        onClick={onCanvasClick}
+                        style={canvasHeight ? { height: canvasHeight } : undefined}
+                    >
+                        {components.length > 0 ? (
+                            components.map(component => (
+                                <ComponentRenderer
+                                    key={component.id}
+                                    component={component}
+                                    selectedId={selectedId}
+                                    selectComponent={canvasSelect}
+                                />
+                            ))
+                        ) : (
+                            <div className="canvas-empty">
+                                <div className="canvas-empty__icon">
+                                    <MousePointer2 size={32} />
+                                </div>
+                                <h3 className="canvas-empty__title">Canvas Boş</h3>
+                                <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
-            <div className="canvas-resize-handle" onMouseDown={handleMouseDown}>
-                <ChevronDown size={20} />
-            </div>
-        </div>,
-        canvasRoot
+                </div>,
+                canvasRoot
+            )}
+            {createPortal(
+                <div className="canvas-resize-handle" onMouseDown={handleMouseDown}>
+                    <ChevronDown size={20} />
+                </div>,
+                document.body
+            )}
+        </>
     );
 };
