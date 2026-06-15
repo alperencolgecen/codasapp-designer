@@ -96,7 +96,9 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                 )}
             </div>
             <div className="canvas-resize-bar" onMouseDown={handleMouseDown}>
-                {dragDir === 'right' ? <ChevronDown size={20} className="canvas-resize-bar__icon" /> : <ChevronUp size={20} className="canvas-resize-bar__icon" />}
+                <div className="canvas-resize-handle">
+                    {dragDir === 'right' ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                </div>
                 <div className="canvas-resize-bar__left">
                     <Minus size={16} />
                     <span>Azalt</span>
