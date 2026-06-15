@@ -86,3 +86,17 @@ export const downloadProject = (components: ComponentData[]) => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 };
+
+let previewWindow: Window | null = null;
+
+export const previewInBrowser = (components: ComponentData[]) => {
+    const html = generateFullHTML(components);
+    const blob = new Blob([html], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    if (previewWindow && !previewWindow.closed) {
+        previewWindow.location.href = url;
+    } else {
+        previewWindow = window.open(url, 'codasapp-preview');
+    }
+};

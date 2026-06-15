@@ -39,26 +39,24 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                 className={`canvas-paper ${isOver ? 'canvas-paper--droppable' : ''}`}
                 onClick={onCanvasClick}
             >
-                <div className="canvas-content">
-                    {components.length > 0 ? (
-                        components.map(component => (
-                            <ComponentRenderer
-                                key={component.id}
-                                component={component}
-                                selectedId={selectedId}
-                                selectComponent={canvasSelect}
-                            />
-                        ))
-                    ) : (
-                        <div className="canvas-empty">
-                            <div className="canvas-empty__icon">
-                                <MousePointer2 size={32} />
-                            </div>
-                            <h3 className="canvas-empty__title">Canvas Boş</h3>
-                            <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
+                {components.length > 0 ? (
+                    components.map(component => (
+                        <ComponentRenderer
+                            key={component.id}
+                            component={component}
+                            selectedId={selectedId}
+                            selectComponent={canvasSelect}
+                        />
+                    ))
+                ) : (
+                    <div className="canvas-empty">
+                        <div className="canvas-empty__icon">
+                            <MousePointer2 size={32} />
                         </div>
-                    )}
-                </div>
+                        <h3 className="canvas-empty__title">Canvas Boş</h3>
+                        <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
+                    </div>
+                )}
             </div>
         </div>,
         canvasRoot

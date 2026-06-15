@@ -1,0 +1,9 @@
+.canvas-cmp-divider {
+    background-color: #ffae00;
+}
+.canvas-cmp-divider--h {
+    height: 20px;
+}
+.canvas-cmp-divider--v {
+    height: 60px;
+}

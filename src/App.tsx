@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { DndContext, DragOverlay, pointerWithin } from '@dnd-kit/core';
 import { useApp } from './hooks/useApp';
 import { CanvasArea } from './components/CanvasArea';
 import { Toolbar } from './components/Toolbar';
@@ -15,14 +15,19 @@ const BuilderLayout = () => {
     activeItem,
     sensors,
     handleDragStart,
+    handleDragMove,
+    handleDragOver,
     handleDragEnd,
   } = useApp();
 
   return (
     <DndContext
       onDragStart={handleDragStart}
+      onDragMove={handleDragMove}
+      onDragOver={handleDragOver}
       onDragEnd={handleDragEnd}
       sensors={sensors}
+      collisionDetection={pointerWithin}
     >
       {/* 
         Functional Injectors:

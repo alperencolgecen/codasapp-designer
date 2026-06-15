@@ -1,0 +1,18 @@
+.canvas-cmp-card {
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #f9fafb;
+    color: #1f2937;
+}
+.canvas-cmp-card__title {
+    margin: 0 0 8px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #1f2937;
+}
+.canvas-cmp-card__subtitle {
+    margin: 0 0 12px 0;
+    color: #6b7280;
+    font-size: 14px;
+}

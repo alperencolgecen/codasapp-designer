@@ -26,5 +26,6 @@ export const createComponent = (
 export const createRootComponent = (): ComponentData => {
     return createComponent('container', {
         className: 'min-h-screen w-full bg-white p-4',
+        style: { position: 'relative' },
     });
 };

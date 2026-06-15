@@ -13,7 +13,7 @@ export { DragPreview } from './components/DragPreview';
 export type { ComponentData, BuilderState } from './types/component';
 
 // Utils
-export { generateFullHTML, downloadProject } from './utils/exporter';
+export { generateFullHTML, downloadProject, previewInBrowser } from './utils/exporter';
 
 // Styles
 import './App.css';

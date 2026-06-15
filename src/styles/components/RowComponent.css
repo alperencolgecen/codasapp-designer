@@ -1,0 +1,12 @@
+.canvas-cmp-row {
+    min-height: 60px;
+    min-width: 120px;
+    border: 1px dashed #fcd34d;
+    background: #fef3c7;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    color: #1f2937;
+}

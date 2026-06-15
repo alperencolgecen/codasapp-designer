@@ -1,12 +1,12 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { Undo2, Redo2, Download, Rocket, ChevronDown, Zap, Eye } from 'lucide-react';
+import { Undo2, Redo2, Download, Rocket, ChevronDown, Zap, Eye, ExternalLink } from 'lucide-react';
 import { useBuilder } from '../context/BuilderContext';
-import { downloadProject } from '../utils/exporter';
+import { downloadProject, previewInBrowser } from '../utils/exporter';
 import '../styles/Toolbar.css';
 
 export const Toolbar: React.FC = () => {
-    const { undo, redo, canUndo, canRedo, components, togglePreviewMode } = useBuilder();
+    const { undo, redo, canUndo, canRedo, components } = useBuilder();
 
     const logoRoot = document.getElementById('logo-portal');
     const menuRoot = document.getElementById('menu-portal');
@@ -29,7 +29,14 @@ export const Toolbar: React.FC = () => {
                 <>
                     <div className="toolbar__menu-item">Dosya</div>
                     <div className="toolbar__menu-item">Düzenle</div>
-                    <div className="toolbar__menu-item">Görünüm</div>
+                    <div
+                        className="toolbar__menu-item"
+                        onClick={() => previewInBrowser(components)}
+                        title="Tarayıcıda önizle"
+                    >
+                        <ExternalLink size={14} style={{ marginRight: 4 }} />
+                        Görüntüle
+                    </div>
                     <div className="toolbar__menu-item">Yardım</div>
                 </>,
                 menuRoot
@@ -68,9 +75,9 @@ export const Toolbar: React.FC = () => {
             {actionsRoot && createPortal(
                 <>
                     <button
-                        onClick={togglePreviewMode}
+                        onClick={() => previewInBrowser(components)}
                         className="toolbar__btn"
-                        title="Önizleme"
+                        title="Tarayıcıda önizle"
                     >
                         <Eye size={18} />
                     </button>

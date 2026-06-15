@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useCallback, type ReactNode } from 'react';
 import type { ComponentData, ComponentType, StyleState, ComponentStyle } from '../types/component';
-import { createRootComponent, createComponent } from '../utils/component-factory';
+import { createComponent } from '../utils/component-factory';
+import { componentRegistry } from '../components/canvas/registry';
+import { getDefaultSize } from '../utils/defaults';
 
 export type TabType = 'discover' | 'templates' | 'elements' | 'uploads' | 'archive' | null;
 
@@ -32,7 +34,7 @@ const BuilderContext = createContext<BuilderContextType | undefined>(undefined);
 export { BuilderContext };
 
 export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [components, setComponents] = useState<ComponentData[]>([createRootComponent()]);
+    const [components, setComponents] = useState<ComponentData[]>([]);
     const [selectedId, setSelectedId] = useState<string | null>(null);
     const [selectedIds, setSelectedIds] = useState<string[]>([]); // Multi-selection
     const [activeStyleState, setActiveStyleState] = useState<StyleState>('base');
@@ -97,12 +99,21 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
     const addComponent = (type: ComponentType, parentId?: string, x?: number, y?: number) => {
         const newComponent = createComponent(type);
 
+        // Merge defaultProps from component registry
+        const def = componentRegistry[type];
+        if (def?.defaultProps) {
+            newComponent.props = { ...def.defaultProps, ...newComponent.props };
+        }
+
         if (x !== undefined && y !== undefined) {
+            const size = getDefaultSize(type);
             newComponent.props.style = {
                 ...newComponent.props.style,
                 position: 'absolute',
                 left: `${x}px`,
-                top: `${y}px`
+                top: `${y}px`,
+                width: `${size.width}px`,
+                height: `${size.height}px`,
             };
             // Sync stateStyles too
             newComponent.stateStyles.base = {
@@ -139,10 +150,8 @@ export const BuilderProvider: React.FC<{ children: ReactNode }> = ({ children })
             };
 
             if (!parentId) {
-                if (newComponents.length > 0) {
-                    newComponent.parentId = newComponents[0].id;
-                    newComponents[0].children.push(newComponent);
-                }
+                newComponent.parentId = null;
+                newComponents.push(newComponent);
             } else {
                 addToParent(newComponents);
             }

@@ -10,10 +10,11 @@
   max-width: 1400px;
   min-height: 1000px;
   position: relative;
-  background-color: #ffffff; /* Explicit white for paper */
+  background-color: #ffffff;
+  color: #1f2937;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
-  margin-bottom: 100px; /* Space at bottom */
+  margin-bottom: 100px;
 }
 
 .canvas-paper--droppable {
@@ -30,15 +31,20 @@
 .component-wrapper {
   cursor: pointer;
   box-sizing: border-box;
-  transition: box-shadow 0.1s ease;
+  outline: 2px solid rgba(59, 130, 246, 0.3);
+  outline-offset: 1px;
+  transition: outline-color 0.15s ease, box-shadow 0.1s ease;
+  color: #1f2937;
+  user-select: none;
 }
 
 .component-wrapper:hover {
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.5);
+  outline-color: rgba(59, 130, 246, 0.7);
 }
 
 .component-wrapper--selected {
-  box-shadow: 0 0 0 var(--selection-border-width) var(--color-primary) !important;
+  outline: 3px solid #3b82f6 !important;
+  box-shadow: 0 0 12px rgba(59, 130, 246, 0.25);
   z-index: var(--z-index-base) + 1;
 }
 
