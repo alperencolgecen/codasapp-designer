@@ -80,6 +80,21 @@ export const InspectorPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* ── Image src / alt ── */}
+                    {selectedComponent.type === 'image' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Görsel</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Kaynak (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Alt metni</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.alt || ''} onChange={(e) => handlePropChange('alt', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── Heading level ── */}
                     {selectedComponent.type === 'heading' && (
                         <div className="inspector-panel__section">
@@ -252,6 +267,66 @@ export const InspectorPanel: React.FC = () => {
                                         onChange={(e) => handlePropChange('total', parseInt(e.target.value) || 5)}
                                     />
                                 </div>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Video src / poster ── */}
+                    {selectedComponent.type === 'video' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Video</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Kaynak (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Poster (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.poster || ''} onChange={(e) => handlePropChange('poster', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Iframe src / title ── */}
+                    {selectedComponent.type === 'iframe' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Iframe</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Kaynak (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Başlık</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.title || ''} onChange={(e) => handlePropChange('title', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Audio src ── */}
+                    {selectedComponent.type === 'audio' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Audio</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Kaynak (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Figure src / alt / caption ── */}
+                    {selectedComponent.type === 'figure' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Figure</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Görsel (URL)</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.src || ''} onChange={(e) => handlePropChange('src', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Alt metni</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.alt || ''} onChange={(e) => handlePropChange('alt', e.target.value)} />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Altyazı</label>
+                                <input type="text" className="inspector-panel__input" value={selectedComponent.props.caption || ''} onChange={(e) => handlePropChange('caption', e.target.value)} />
                             </div>
                         </div>
                     )}

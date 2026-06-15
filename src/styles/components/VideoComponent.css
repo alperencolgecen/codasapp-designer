@@ -1,0 +1,9 @@
+.canvas-cmp-video-wrapper {
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.canvas-cmp-video {
+    display: block;
+    max-width: 100%;
+}

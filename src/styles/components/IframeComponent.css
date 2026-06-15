@@ -1,0 +1,11 @@
+.canvas-cmp-iframe-wrapper {
+    width: 100%;
+    min-height: 200px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+}
+.canvas-cmp-iframe {
+    display: block;
+}

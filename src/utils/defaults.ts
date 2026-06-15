@@ -26,6 +26,10 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     navbar: { width: 400, height: 48 },
     breadcrumb: { width: 300, height: 36 },
     pagination: { width: 250, height: 36 },
+    video: { width: 320, height: 240 },
+    iframe: { width: 400, height: 300 },
+    audio: { width: 300, height: 60 },
+    figure: { width: 300, height: 260 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>

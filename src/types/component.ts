@@ -1,4 +1,4 @@
-export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'label' | 'navbar' | 'breadcrumb' | 'pagination';
+export type ComponentType = 'container' | 'text' | 'button' | 'image' | 'row' | 'column' | 'input' | 'card' | 'icon' | 'divider' | 'heading' | 'paragraph' | 'span' | 'blockquote' | 'precode' | 'link' | 'list' | 'textarea' | 'select' | 'checkbox' | 'radio' | 'label' | 'navbar' | 'breadcrumb' | 'pagination' | 'video' | 'iframe' | 'audio' | 'figure';
 
 export type StyleState = 'base' | 'hover' | 'active' | 'focus';
 
@@ -50,6 +50,11 @@ export interface ComponentProps {
     links?: { label: string; href: string }[];
     // Breadcrumb props
     items?: { label: string; href: string }[];
+    // Media props
+    poster?: string;
+    controls?: boolean;
+    title?: string;
+    caption?: string;
     // Pagination props
     current?: number;
     total?: number;

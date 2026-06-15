@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag, Menu, ChevronRight, ChevronsLeftRight } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag, Menu, ChevronRight, ChevronsLeftRight, Video, Frame, Volume2, ImageDown } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -38,6 +38,10 @@ const getIcon = (type: ComponentType) => {
         case 'navbar': return <Menu size={iconSize} strokeWidth={stroke} />;
         case 'breadcrumb': return <ChevronRight size={iconSize} strokeWidth={stroke} />;
         case 'pagination': return <ChevronsLeftRight size={iconSize} strokeWidth={stroke} />;
+        case 'video': return <Video size={iconSize} strokeWidth={stroke} />;
+        case 'iframe': return <Frame size={iconSize} strokeWidth={stroke} />;
+        case 'audio': return <Volume2 size={iconSize} strokeWidth={stroke} />;
+        case 'figure': return <ImageDown size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

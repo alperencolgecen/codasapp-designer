@@ -25,6 +25,10 @@ import { LabelComponent } from './LabelComponent';
 import { NavbarComponent } from './NavbarComponent';
 import { BreadcrumbComponent } from './BreadcrumbComponent';
 import { PaginationComponent } from './PaginationComponent';
+import { VideoComponent } from './VideoComponent';
+import { IframeComponent } from './IframeComponent';
+import { AudioComponent } from './AudioComponent';
+import { FigureComponent } from './FigureComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -52,4 +56,8 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     navbar: NavbarComponent,
     breadcrumb: BreadcrumbComponent,
     pagination: PaginationComponent,
+    video: VideoComponent,
+    iframe: IframeComponent,
+    audio: AudioComponent,
+    figure: FigureComponent,
 };

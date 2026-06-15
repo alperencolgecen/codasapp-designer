@@ -1,0 +1,20 @@
+.canvas-cmp-figure {
+    margin: 0;
+    padding: 8px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    text-align: center;
+}
+.canvas-cmp-figure__img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    display: block;
+}
+.canvas-cmp-figure__caption {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #6b7280;
+    font-style: italic;
+}

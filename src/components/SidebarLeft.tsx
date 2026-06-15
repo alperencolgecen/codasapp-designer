@@ -32,7 +32,6 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="container" label="Container" />
                                 <DraggableSidebarItem type="text" label="Text" />
                                 <DraggableSidebarItem type="button" label="Button" />
-                                <DraggableSidebarItem type="image" label="Image" />
                                 <DraggableSidebarItem type="input" label="Input" />
                                 <DraggableSidebarItem type="card" label="Card" />
                                 <DraggableSidebarItem type="icon" label="Icon" />
@@ -79,6 +78,17 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="navbar" label="Navbar" />
                                 <DraggableSidebarItem type="breadcrumb" label="Breadcrumb" />
                                 <DraggableSidebarItem type="pagination" label="Pagination" />
+                            </div>
+                        </div>
+
+                        <div className="sidebar-left__section">
+                            <span className="sidebar-left__title">Medya</span>
+                            <div className="sidebar-left__grid">
+                                <DraggableSidebarItem type="image" label="Image" />
+                                <DraggableSidebarItem type="video" label="Video" />
+                                <DraggableSidebarItem type="audio" label="Audio" />
+                                <DraggableSidebarItem type="iframe" label="Iframe" />
+                                <DraggableSidebarItem type="figure" label="Figure" />
                             </div>
                         </div>
                     </div>
