@@ -174,6 +174,88 @@ export const InspectorPanel: React.FC = () => {
                         </div>
                     )}
 
+                    {/* ── Navbar brand + links ── */}
+                    {selectedComponent.type === 'navbar' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Navbar</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Marka</label>
+                                <input
+                                    type="text"
+                                    className="inspector-panel__input"
+                                    value={selectedComponent.props.brand || ''}
+                                    onChange={(e) => handlePropChange('brand', e.target.value)}
+                                />
+                            </div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Linkler (her satır: etiket,url)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={4}
+                                    value={Array.isArray(selectedComponent.props.links) ? selectedComponent.props.links.map((l: { label: string; href: string }) => `${l.label},${l.href}`).join('\n') : ''}
+                                    onChange={(e) => {
+                                        const items = e.target.value.split('\n').filter(Boolean).map((line: string) => {
+                                            const [label = 'Link', href = '#'] = line.split(',');
+                                            return { label: label.trim(), href: href.trim() };
+                                        });
+                                        handlePropChange('links', items);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Breadcrumb items ── */}
+                    {selectedComponent.type === 'breadcrumb' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Breadcrumb</div>
+                            <div className="inspector-panel__field">
+                                <label className="inspector-panel__label">Öğeler (her satır: etiket,url)</label>
+                                <textarea
+                                    className="inspector-panel__textarea"
+                                    rows={4}
+                                    value={Array.isArray(selectedComponent.props.items) ? selectedComponent.props.items.map((i: { label: string; href: string }) => `${i.label},${i.href}`).join('\n') : ''}
+                                    onChange={(e) => {
+                                        const items = e.target.value.split('\n').filter(Boolean).map((line: string) => {
+                                            const [label = 'Item', href = '#'] = line.split(',');
+                                            return { label: label.trim(), href: href.trim() };
+                                        });
+                                        handlePropChange('items', items);
+                                    }}
+                                />
+                            </div>
+                        </div>
+                    )}
+
+                    {/* ── Pagination current/total ── */}
+                    {selectedComponent.type === 'pagination' && (
+                        <div className="inspector-panel__section">
+                            <div className="inspector-panel__section-title">Pagination</div>
+                            <div className="inspector-panel__grid">
+                                <div className="inspector-panel__field">
+                                    <label className="inspector-panel__label">Aktif Sayfa</label>
+                                    <input
+                                        type="number"
+                                        min={1}
+                                        className="inspector-panel__input"
+                                        value={selectedComponent.props.current ?? 1}
+                                        onChange={(e) => handlePropChange('current', parseInt(e.target.value) || 1)}
+                                    />
+                                </div>
+                                <div className="inspector-panel__field">
+                                    <label className="inspector-panel__label">Toplam Sayfa</label>
+                                    <input
+                                        type="number"
+                                        min={1}
+                                        className="inspector-panel__input"
+                                        value={selectedComponent.props.total ?? 5}
+                                        onChange={(e) => handlePropChange('total', parseInt(e.target.value) || 5)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* ── Label text ── */}
                     {selectedComponent.type === 'label' && (
                         <div className="inspector-panel__section">

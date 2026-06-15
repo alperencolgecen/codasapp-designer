@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import type { ComponentType } from '../types/component';
-import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag } from 'lucide-react';
+import { Box, Type, MousePointerClick, Image, Columns, LayoutGrid, FileInput, CreditCard, Star, Minus, Heading2, Pilcrow, TextQuote, Code2, Link2, List, TextCursorInput, ChevronDown, CheckSquare, Circle, Tag, Menu, ChevronRight, ChevronsLeftRight } from 'lucide-react';
 import '../styles/DraggableSidebarItem.css';
 
 interface DraggableSidebarItemProps {
@@ -35,6 +35,9 @@ const getIcon = (type: ComponentType) => {
         case 'checkbox': return <CheckSquare size={iconSize} strokeWidth={stroke} />;
         case 'radio': return <Circle size={iconSize} strokeWidth={stroke} />;
         case 'label': return <Tag size={iconSize} strokeWidth={stroke} />;
+        case 'navbar': return <Menu size={iconSize} strokeWidth={stroke} />;
+        case 'breadcrumb': return <ChevronRight size={iconSize} strokeWidth={stroke} />;
+        case 'pagination': return <ChevronsLeftRight size={iconSize} strokeWidth={stroke} />;
         default: return <Box size={iconSize} strokeWidth={stroke} />;
     }
 };

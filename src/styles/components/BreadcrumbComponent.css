@@ -1,0 +1,30 @@
+.canvas-cmp-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    color: #1f2937;
+    font-size: 14px;
+}
+.canvas-cmp-breadcrumb__item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.canvas-cmp-breadcrumb__link {
+    color: #3b82f6;
+    text-decoration: none;
+}
+.canvas-cmp-breadcrumb__link:hover {
+    text-decoration: underline;
+}
+.canvas-cmp-breadcrumb__current {
+    color: #6b7280;
+    font-weight: 500;
+}
+.canvas-cmp-breadcrumb__sep {
+    color: #9ca3af;
+    margin: 0 4px;
+}

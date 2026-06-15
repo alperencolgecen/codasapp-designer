@@ -23,6 +23,9 @@ export const DEFAULT_SIZES: Record<string, { width: number; height: number }> = 
     checkbox: { width: 120, height: 30 },
     radio: { width: 120, height: 30 },
     label: { width: 100, height: 28 },
+    navbar: { width: 400, height: 48 },
+    breadcrumb: { width: 300, height: 36 },
+    pagination: { width: 250, height: 36 },
 };
 
 export const getDefaultSize = (type: string): { width: number; height: number } =>

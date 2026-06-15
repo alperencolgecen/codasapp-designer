@@ -71,6 +71,35 @@ const generateComponentHTML = (component: ComponentData): string => {
             return `<label ${idAttr} ${classAttr} ${styleAttr}><input type="radio" name="${props.name || 'radio'}" ${props.checked ? 'checked' : ''} /> ${props.label || 'Radio'}</label>`;
         case 'label':
             return `<label ${idAttr} ${classAttr} ${styleAttr} ${props.htmlFor ? `for="${props.htmlFor}"` : ''}>${props.text || 'Label'}</label>`;
+        case 'navbar': {
+            const navLinks = Array.isArray(props.links) ? props.links : [];
+            const linksHtml = navLinks.map((l: { label?: string; href?: string }) =>
+                `<a href="${l.href || '#'}" style="color:#cbd5e1;text-decoration:none;font-size:14px;">${l.label || 'Link'}</a>`
+            ).join('\n');
+            return `<nav ${idAttr} ${classAttr} ${styleAttr} style="display:flex;align-items:center;justify-content:space-between;padding:12px 16px;background:#1e293b;border-radius:6px;color:#fff;min-height:48px;${inlineStyle}">\n<span style="font-weight:700;font-size:16px;color:#fff;">${props.brand || 'Brand'}</span>\n<div style="display:flex;gap:16px;">\n${linksHtml}\n</div>\n</nav>`;
+        }
+        case 'breadcrumb': {
+            const bcItems = Array.isArray(props.items) ? props.items : [];
+            const bcHtml = bcItems.map((item: { label?: string; href?: string }, i: number, arr: any[]) => {
+                const isLast = i === arr.length - 1;
+                const content = isLast || !item.href
+                    ? `<span style="color:#6b7280;font-weight:500;">${item.label || 'Item'}</span>`
+                    : `<a href="${item.href}" style="color:#3b82f6;text-decoration:none;">${item.label || 'Item'}</a>`;
+                return `${content}${!isLast ? '<span style="color:#9ca3af;margin:0 4px;">/</span>' : ''}`;
+            }).join('');
+            return `<nav ${idAttr} ${classAttr} ${styleAttr} style="display:flex;align-items:center;gap:4px;padding:8px 12px;background:#f8fafc;border-radius:6px;font-size:14px;${inlineStyle}">\n${bcHtml}\n</nav>`;
+        }
+        case 'pagination': {
+            const cur = props.current || 1;
+            const total = props.total || 5;
+            let pagesHtml = '<span style="...">‹</span>';
+            for (let i = 1; i <= total; i++) {
+                const activeStyle = i === cur ? 'background:#3b82f6;color:#fff;border-color:#3b82f6;' : '';
+                pagesHtml += `<span style="display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 8px;border-radius:6px;font-size:14px;color:#1f2937;background:#fff;border:1px solid #d1d5db;cursor:pointer;${activeStyle}">${i}</span>`;
+            }
+            pagesHtml += '<span>›</span>';
+            return `<nav ${idAttr} ${classAttr} style="display:flex;align-items:center;gap:4px;padding:8px 0;${inlineStyle}">\n${pagesHtml}\n</nav>`;
+        }
         case 'row':
             return `<div ${idAttr} class="flex flex-row ${className || ''}" ${styleAttr}>\n${childHTML}\n</div>`;
         case 'column':

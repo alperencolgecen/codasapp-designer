@@ -72,6 +72,15 @@ export const SidebarLeft = () => {
                                 <DraggableSidebarItem type="label" label="Label" />
                             </div>
                         </div>
+
+                        <div className="sidebar-left__section">
+                            <span className="sidebar-left__title">Navigasyon</span>
+                            <div className="sidebar-left__grid">
+                                <DraggableSidebarItem type="navbar" label="Navbar" />
+                                <DraggableSidebarItem type="breadcrumb" label="Breadcrumb" />
+                                <DraggableSidebarItem type="pagination" label="Pagination" />
+                            </div>
+                        </div>
                     </div>
                 );
 

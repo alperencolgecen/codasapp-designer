@@ -22,6 +22,9 @@ import { SelectComponent } from './SelectComponent';
 import { CheckboxComponent } from './CheckboxComponent';
 import { RadioComponent } from './RadioComponent';
 import { LabelComponent } from './LabelComponent';
+import { NavbarComponent } from './NavbarComponent';
+import { BreadcrumbComponent } from './BreadcrumbComponent';
+import { PaginationComponent } from './PaginationComponent';
 
 export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     container: ContainerComponent,
@@ -46,4 +49,7 @@ export const componentRegistry: Record<string, CanvasComponentDefinition> = {
     checkbox: CheckboxComponent,
     radio: RadioComponent,
     label: LabelComponent,
+    navbar: NavbarComponent,
+    breadcrumb: BreadcrumbComponent,
+    pagination: PaginationComponent,
 };
