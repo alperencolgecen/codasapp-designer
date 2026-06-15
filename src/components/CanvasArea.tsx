@@ -2,11 +2,14 @@ import React, { useState, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useDroppable } from '@dnd-kit/core';
 import type { ComponentData } from '../types/component';
-import { MousePointer2, X, Minus, Plus, ChevronDown, ChevronUp } from 'lucide-react';
+import { MousePointer2, X, Minus, Plus, ChevronDown } from 'lucide-react';
 import { useCanvas } from '../hooks/useCanvas';
 import { useBuilder } from '../context/BuilderContext';
 import { ComponentRenderer } from './ComponentRenderer';
 import '../styles/CanvasArea.css';
+
+const STEP = 3;
+const INTERVAL = 40;
 
 export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ components }) => {
     const { isPreviewMode, togglePreviewMode, selectComponent } = useBuilder();
@@ -18,39 +21,31 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const canvasRoot = document.getElementById('canvas-root');
 
     const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
-    const [dragDir, setDragDir] = useState<'left' | 'right'>('right');
-    const resizingRef = useRef(false);
-    const startXRef = useRef(0);
-    const startHRef = useRef(0);
+    const heightRef = useRef(300);
+    const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-    const handleMouseDown = useCallback((e: React.MouseEvent) => {
-        e.preventDefault();
-        resizingRef.current = true;
+    const getCurrentHeight = useCallback(() => {
         const paper = document.getElementById('canvas-paper');
-        if (!paper) return;
-        startXRef.current = e.clientX;
-        startHRef.current = paper.offsetHeight;
-        setDragDir('right');
+        return paper ? paper.offsetHeight : heightRef.current;
+    }, []);
 
-        const handleMouseMove = (ev: MouseEvent) => {
-            if (!resizingRef.current) return;
-            setDragDir(ev.clientX >= startXRef.current ? 'right' : 'left');
-            const diff = ev.clientX - startXRef.current;
-            setCanvasHeight(Math.max(300, startHRef.current + diff));
-        };
+    const startResize = useCallback((direction: 'shrink' | 'grow') => {
+        if (timerRef.current) return;
+        heightRef.current = getCurrentHeight();
 
-        const handleMouseUp = () => {
-            resizingRef.current = false;
-            window.removeEventListener('mousemove', handleMouseMove);
-            window.removeEventListener('mouseup', handleMouseUp);
-            document.body.style.cursor = '';
-            document.body.style.userSelect = '';
-        };
+        timerRef.current = setInterval(() => {
+            heightRef.current = heightRef.current + (direction === 'grow' ? STEP : -STEP);
+            const clamped = Math.max(300, heightRef.current);
+            heightRef.current = clamped;
+            setCanvasHeight(clamped);
+        }, INTERVAL);
+    }, [getCurrentHeight]);
 
-        window.addEventListener('mousemove', handleMouseMove);
-        window.addEventListener('mouseup', handleMouseUp);
-        document.body.style.cursor = 'ew-resize';
-        document.body.style.userSelect = 'none';
+    const stopResize = useCallback(() => {
+        if (timerRef.current) {
+            clearInterval(timerRef.current);
+            timerRef.current = null;
+        }
     }, []);
 
     if (!canvasRoot) return null;
@@ -95,15 +90,23 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                     </div>
                 )}
             </div>
-            <div className="canvas-resize-bar" onMouseDown={handleMouseDown}>
+            <div className="canvas-resize-bar">
                 <div className="canvas-resize-handle">
-                    {dragDir === 'right' ? <ChevronDown size={20} /> : <ChevronUp size={20} />}
+                    <ChevronDown size={20} />
                 </div>
-                <div className="canvas-resize-bar__left">
+                <div
+                    className="canvas-resize-bar__left"
+                    onMouseEnter={() => startResize('shrink')}
+                    onMouseLeave={stopResize}
+                >
                     <Minus size={16} />
                     <span>Azalt</span>
                 </div>
-                <div className="canvas-resize-bar__right">
+                <div
+                    className="canvas-resize-bar__right"
+                    onMouseEnter={() => startResize('grow')}
+                    onMouseLeave={stopResize}
+                >
                     <span>Artır</span>
                     <Plus size={16} />
                 </div>

@@ -70,7 +70,7 @@
 
 .canvas-resize-handle {
   position: absolute;
-  top: -14px;
+  top: -8px;
   left: 50%;
   transform: translateX(-50%);
   width: 48px;
@@ -78,13 +78,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: ew-resize;
+  cursor: default;
   color: #9ca3af;
   background: #1a1a1a;
   border: 1px solid #333;
   border-radius: 8px;
   z-index: 3;
   transition: color 0.2s, background 0.2s, border-color 0.2s;
+  pointer-events: none;
 }
 
 .canvas-resize-handle:hover {
