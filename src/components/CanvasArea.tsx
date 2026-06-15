@@ -23,14 +23,17 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
     const [canvasHeight, setCanvasHeight] = useState<number | null>(null);
     const heightRef = useRef(300);
     const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+    const dragRef = useRef(false);
+    const dragStartY = useRef(0);
+    const dragStartH = useRef(0);
 
     const getCurrentHeight = useCallback(() => {
         const paper = document.getElementById('canvas-paper');
         return paper ? paper.offsetHeight : heightRef.current;
     }, []);
 
-    const startResize = useCallback((direction: 'shrink' | 'grow') => {
-        if (timerRef.current) return;
+    const startHoverResize = useCallback((direction: 'shrink' | 'grow') => {
+        if (timerRef.current || dragRef.current) return;
         heightRef.current = getCurrentHeight();
 
         timerRef.current = setInterval(() => {
@@ -41,12 +44,42 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
         }, INTERVAL);
     }, [getCurrentHeight]);
 
-    const stopResize = useCallback(() => {
+    const stopHoverResize = useCallback(() => {
         if (timerRef.current) {
             clearInterval(timerRef.current);
             timerRef.current = null;
         }
     }, []);
+
+    const handleDragStart = useCallback((e: React.MouseEvent) => {
+        e.preventDefault();
+        e.stopPropagation();
+        stopHoverResize();
+        dragRef.current = true;
+        const paper = document.getElementById('canvas-paper');
+        if (!paper) return;
+        dragStartY.current = e.clientY;
+        dragStartH.current = paper.offsetHeight;
+
+        const onMove = (ev: MouseEvent) => {
+            if (!dragRef.current) return;
+            const diff = ev.clientY - dragStartY.current;
+            const h = Math.max(300, dragStartH.current + diff);
+            heightRef.current = h;
+            setCanvasHeight(h);
+        };
+
+        const onUp = () => {
+            dragRef.current = false;
+            window.removeEventListener('mousemove', onMove);
+            window.removeEventListener('mouseup', onUp);
+            document.body.style.cursor = '';
+        };
+
+        window.addEventListener('mousemove', onMove);
+        window.addEventListener('mouseup', onUp);
+        document.body.style.cursor = 'row-resize';
+    }, [stopHoverResize]);
 
     if (!canvasRoot) return null;
 
@@ -89,23 +122,23 @@ export const CanvasArea: React.FC<{ components: ComponentData[] }> = ({ componen
                         <p className="canvas-empty__text">Sol panelden bileşenleri sürükleyip buraya bırakın</p>
                     </div>
                 )}
+                <div className="canvas-paper-resize-handle" onMouseDown={handleDragStart}>
+                    <ChevronDown size={18} />
+                </div>
             </div>
             <div className="canvas-resize-bar">
-                <div className="canvas-resize-handle">
-                    <ChevronDown size={20} />
-                </div>
                 <div
                     className="canvas-resize-bar__left"
-                    onMouseEnter={() => startResize('shrink')}
-                    onMouseLeave={stopResize}
+                    onMouseEnter={() => startHoverResize('shrink')}
+                    onMouseLeave={stopHoverResize}
                 >
                     <Minus size={16} />
                     <span>Azalt</span>
                 </div>
                 <div
                     className="canvas-resize-bar__right"
-                    onMouseEnter={() => startResize('grow')}
-                    onMouseLeave={stopResize}
+                    onMouseEnter={() => startHoverResize('grow')}
+                    onMouseLeave={stopHoverResize}
                 >
                     <span>Artır</span>
                     <Plus size={16} />
