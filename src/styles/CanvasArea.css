@@ -56,8 +56,9 @@
 }
 
 .canvas-resize-bar {
-  width: 100vw;
-  max-width: 1400px;
+  width: 30vw;
+  min-width: 200px;
+  max-width: 420px;
   height: 48px;
   display: flex;
   flex-shrink: 0;
